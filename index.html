@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Box and barill !</title>
+
+	<style>
+		#infos {
+			background-color: white;
+			padding: 100px;
+			position: absolute;
+		}
+
+		body {
+			font-family: Monospace;
+			font-weight: bold;
+			background-color: #ccccff;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		#ThreeJS {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+		}
+
+		.radio-controller {
+			position: fixed;
+			bottom: 50px;
+			left: 50%;
+			transform: translate(0% -50%);
+		}
+
+		.radio-controller {
+			z-index: 1;
+			position: fixed;
+			bottom: 4em;
+			left: 50%;
+			width: 16em;
+			height: 6em;
+			margin-left: -120px;
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			grid-column-gap: 2px;
+			grid-row-gap: 2px;
+		}
+
+		#car-city-app .radio-controller button {
+			opacity: 0.5;
+			transition: opacity 0.3s;
+		}
+
+		#car-city-app .radio-controller button:hover {
+			opacity: 0.8;
+		}
+
+		#car-city-app .clicked {
+			opacity: 0.8;
+		}
+
+		#rc-up {
+			grid-area: 1 / 2 / 2 / 3;
+		}
+
+		#rc-down {
+			grid-area: 2 / 2 / 3 / 3;
+		}
+
+		#rc-left {
+			grid-area: 2 / 1 / 3 / 2;
+		}
+
+		#rc-right {
+			grid-area: 2 / 3 / 3 / 4;
+		}
+
+		#rc-swap {
+			grid-area: 2 / 5 / 3 / 6;
+		}
+
+		main * {}
+
+		main {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			z-index: 2;
+			color: white;
+			/*overflow-x: scroll;*/
+		}
+
+		section {
+			display: flex;
+			justify-content: space-between;
+			margin: 50px;
+			animation: appear 1s;
+		}
+
+		.card {
+			width: 500px;
+			min-height: 200px;
+			padding: 50px;
+			/*border: 1px solid blue;*/
+			background: rgba(255, 255, 255, 0.248);
+			border-radius: 1rem;
+		}
+
+		.disapear {
+			animation: disappear 1s forwards;
+		}
+
+		.none {
+			display: none;
+		}
+
+		iframe {
+			width: 350px;
+			height: 550px;
+			border-radius: 1rem;
+		}
+
+		@keyframes appear {
+			from {
+				opacity: 0;
+				transform: translate(0px, 100px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translate(0px, 0px);
+			}
+		}
+
+		@keyframes disappear {
+			from {
+				opacity: 1;
+				transform: translate(0px, 0px);
+			}
+
+			to {
+				opacity: 0;
+				transform: translate(0px, -100px);
+				display: none;
+			}
+		}
+	</style>
+	<script src="../utils/libraries/three.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div id="ThreeJS"></div>
+
+	<div class="radio-controller">
+		<button id="rc-up">Up</button>
+		<button id="rc-down">Down</button>
+		<button id="rc-left">Left</button>
+		<button id="rc-right">Right</button>
+	</div>
+
+	<main>
+		<section class="none" id="présentation-1">
+			<div class="card">
+				<h2>Bienvenue sur mon portfolio,</h2>
+			</div>
+		</section>
+		<section class="none" id="présentation-2">
+			<div class="card">
+				<h2>Je suis Thomas Testaud, développeur web fullstack</h2>
+			</div>
+		</section>
+		<section class="none" id="présentation-3">
+			<div class="card">
+				<h2>Blablabla à propos de moi</h2>
+			</div>
+		</section>
+		<section class="none" id="stack-technique">
+			<div class="card">
+				<h2>Stack technique: JS, PHP, Création Rest APIs, Framework Vue.js, Base de donnée MySQL, intégration
+					HTML5
+					/ CSS3...</h2>
+			</div>
+		</section>
+		<section class="none" id="projet-1">
+			<div class="card">
+				<h2>Projets: Events_on_time</h2>
+			</div>
+
+			<!--<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>-->
+		</section>
+		<section class="none" id="projet-2">
+			<div class="card">
+				<h2>Projets: Admin, stage</h2>
+			</div>
+		</section>
+		<section class="none" id="projet-3">
+			<div class="card">
+				<h2>Projets: Pioupiou</h2>
+			</div>
+			<!--<iframe
+				src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
+				frameborder="0"></iframe>-->
+		</section>
+		<section class="none" id="experience-pro-1">
+			<h2>Expérience pro: Stage Eight Bamboos</h2>
+		</section>
+		<section class="none" id="experience-pro-2">
+			<h2>Expérience pro: Freelance technicien du son</h2>
+		</section>
+		<section class="none" id="experience-pro-3">
+			<h2>Expérience pro: sushi-shop</h2>
+		</section>
+		<section class="none" id="contact">
+			<h2>Contact: 06 77 98 48 57</h2>
+		</section>
+	</main>
+
+	<script src="./js/index.js" type="module"></script>
+</body>
+
+</html>
