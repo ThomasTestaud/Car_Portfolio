@@ -16,16 +16,18 @@ camera.position.y = 20;
 camera.position.x = 4;
 
 scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0);
+scene.background = new THREE.Color(0x00a1ff);
 
 ///////////Light/////////////
 const pointLight = new THREE.PointLight(0xffffff, 1);
 pointLight.position.set(0, 30, -30);
 pointLight.castShadow = true; // Enable casting shadows
-
+pointLight.shadow.mapSize.width = 500;
+pointLight.shadow.mapSize.height = 500;
+pointLight.shadow.bias = -0.001;
 scene.add(pointLight);
 const lightHelper = new THREE.PointLightHelper(pointLight)
-scene.add(lightHelper)
+scene.add(lightHelper);
 /////////////////////////
 
 // Renderer
@@ -76,7 +78,8 @@ const drawKit = new DrawKit(scene);
 
 // Draw car
 const carShape = new THREE.BoxGeometry(2, 2, 3);
-const carMaterial = new THREE.MeshToonMaterial({ opacity: 1, metalness: 0, roughness: 1, color: 0xff0000, });
+const carMaterial = new THREE.MeshToonMaterial({ color: 0xff0000, });
+carMaterial.shadowBias = -100;
 const car = new THREE.Mesh(carShape, carMaterial);
 car.position.set(0, 1, 0);
 car.castShadow = true; // Enable casting shadows
