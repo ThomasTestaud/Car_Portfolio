@@ -3,44 +3,14 @@ import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/js
 import { OutlineEffect } from '../../utils/shaders/OutlineEffect.js';
 import Car from './Car.js'
 import RC from './RC.js'
+import DrawKit from './DrawKit.js'
 
 var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
 
 var renderer, effect, scene, camera;
 
-function writeIn(text, x, y, z) {
-    // Create a loader for loading the default font
-    const fontLoader = new THREE.FontLoader();
-
-    // Load the default font
-    fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-        // Create a text geometry using the loaded font
-        const textGeometry = new THREE.TextGeometry(text, {
-            font: font,
-            size: 1.5,
-            height: 1,
-            curveSegments: 12,
-            bevelEnabled: false
-        });
-
-        // Create a material for the text
-        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-
-        // Create a mesh using the text geometry and material
-        const textMesh = new THREE.Mesh(textGeometry, material);
-        textMesh.position.set(x, y, z);
-        // Add the text mesh to the scene
-        scene.add(textMesh);
-    });
-}
-
-
-
-
-//function init() {
 camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1550);
-
 camera.position.z = 50;
 camera.position.y = 20;
 camera.position.x = 4;
@@ -48,35 +18,14 @@ camera.position.x = 4;
 scene = new THREE.Scene();
 scene.background = new THREE.Color(0x0);
 
-// Geometry
-let planeGeometry = new THREE.PlaneGeometry(50, 50);
-
-const gridHelper = new THREE.GridHelper(200, 50);
-scene.add(gridHelper);
-
-
-
 ///////////Light/////////////
 const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(20, 20, 30);
+pointLight.position.set(0, 30, -30);
+pointLight.castShadow = true; // Enable casting shadows
+
 scene.add(pointLight);
-
-const pointLight2 = new THREE.PointLight(0xffffff, 1);
-pointLight2.position.set(-10, 30, -20);
-scene.add(pointLight2);
-
 const lightHelper = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelper)
-const lightHelper2 = new THREE.PointLightHelper(pointLight2)
-scene.add(lightHelper2)
-
-const width = 1000;
-const height = 100;
-const intensity = 2;
-const rectLight = new THREE.RectAreaLight(0xffffff, intensity, width, height);
-rectLight.position.set(0, 10, 0);
-rectLight.lookAt(0, 0, 0);
-scene.add(rectLight);
 /////////////////////////
 
 // Renderer
@@ -85,42 +34,28 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(WIDTH, HEIGHT);
 effect = new OutlineEffect(renderer);
 
+renderer.shadowMap.enabled = true; // Enable shadow mapping
+renderer.shadowMap.type = THREE.PCFSoftShadowMap; // S
+
 // Orbit Controls
 var controls = new OrbitControls(camera, renderer.domElement);
-
 var container = document.getElementById('ThreeJS');
 container.appendChild(renderer.domElement);
+function render() {
+    effect.render(scene, camera);
+    requestAnimationFrame(render);
+}
 requestAnimationFrame(render);
 
 
-// Materials
 
 
-
-
-
-
-// Draw car
-const carShape = new THREE.BoxGeometry(2, 2, 3);
-const carMaterial = new THREE.MeshStandardMaterial({ transparent: true, opacity: 1, metalness: 0.6, roughness: 0, color: 0xff0000, });;
-const car = new THREE.Mesh(carShape, carMaterial);
-car.position.set(0, 1, 0);
-scene.add(car);
-
-
-/// CAR STUFF
-
-
-
+/////// CAR JS IMPORT AND INITIALIZATION ///////
 //Creation of the objects of the game
 let rc = new RC();
 let pandaCar = new Car(-100, 0, 90, "panda", "red");
-
+// Start car
 pandaCar.engine();
-
-
-
-
 //Mapping of the RadioController object to the other objects
 function map(x) {
     rc.mapAccelerate(x, '#rc-up');
@@ -129,17 +64,47 @@ function map(x) {
     rc.mapTurnRight(x, '#rc-right');
 }
 map(pandaCar);
+///////////////////////////////////////////////
 
 
 
-function render() {
-    effect.render(scene, camera);
-    requestAnimationFrame(render);
+
+
+/// DRAW ///
+
+const drawKit = new DrawKit(scene);
+
+// Draw car
+const carShape = new THREE.BoxGeometry(2, 2, 3);
+const carMaterial = new THREE.MeshToonMaterial({ opacity: 1, metalness: 0, roughness: 1, color: 0xff0000, });
+const car = new THREE.Mesh(carShape, carMaterial);
+car.position.set(0, 1, 0);
+car.castShadow = true; // Enable casting shadows
+car.receiveShadow = true; // Enable receiving shadows
+scene.add(car);
+
+
+
+// Grass
+drawKit.drawGrass()
+
+// Road
+function generateRandomPath() {
+    let x = 0;
+    for (let i = 0; i < 350; i++) {
+        x += Math.random() - 0.5;
+        drawKit.drawRoad(1, x);
+    }
 }
+generateRandomPath();
 
 
 
-let main = document.querySelector('main');
+
+
+
+
+
 
 
 /// Queries
@@ -187,87 +152,27 @@ const elementsSpread = {
     'contact': 300,
 };
 
-let geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-let material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
+/* LINE
+let geometry = new THREE.BoxGeometry(0.2, 0.01, 55);
+let material = new THREE.MeshToonMaterial({ color: 0xffffff, });
 let mesh = new THREE.Mesh(geometry, material);
 mesh.position.set(elementsSpread['pres1'], 0, 0);
 scene.add(mesh);
+*/
 
-writeIn('Bienvenue', elementsSpread['pres1'], 0, -4);
-
-
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['pres2'], 0, 0);
-scene.add(mesh);
-
-writeIn('A propos de moi', elementsSpread['pres2'], 0, -7);
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['pres3'], 0, 0);
-scene.add(mesh);
+drawKit.writeIn('Bienvenue', elementsSpread['pres1'], 0.5, -4);
 
 
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['stackTech'], 0, 0);
-scene.add(mesh);
 
-writeIn('Stack technique', elementsSpread['stackTech'], 0, -3);
+drawKit.writeIn('A propos de moi', elementsSpread['pres2'], 0.5, -7);
 
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['projet1'], 0, 0);
-scene.add(mesh);
+drawKit.writeIn('Stack technique', elementsSpread['stackTech'], 0.5, -3);
 
-writeIn('Projet : Events_On_Time', elementsSpread['projet1'], 0, -5);
+drawKit.writeIn('Projet : Events_On_Time', elementsSpread['projet1'], 0.5, 5);
 
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['projet2'], 0, 0);
-scene.add(mesh);
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['projet3'], 0, 0);
-scene.add(mesh);
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['expPro1'], 0, 0);
-scene.add(mesh);
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['expPro2'], 0, 0);
-scene.add(mesh);
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['expPro3'], 0, 0);
-scene.add(mesh);
-
-geometry = new THREE.BoxGeometry(0.2, 0.01, 100);
-material = new THREE.MeshStandardMaterial({ metalness: 0.6, roughness: 0, color: 0xffffff, });;
-mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['contact'], 0, 0);
-scene.add(mesh);
 
 function animate() {
     pandaCar.refresh();
-    camera.position.x = pandaCar.positionX / 10 + 5;
-    let section = 'none';
 
     hideAll();
     if (car.position.x > elementsSpread['pres1'] && car.position.x < elementsSpread['pres2']) {
@@ -308,6 +213,11 @@ function animate() {
     car.position.x = pandaCar.positionX / 10;
     car.position.z = pandaCar.positionY / 10;
     car.rotation.y = THREE.MathUtils.degToRad(pandaCar.direction) * -1;
+
+    camera.position.x = pandaCar.positionX / 10 + 5;
+    camera.position.z = pandaCar.positionY / 10 + 40;
+
+    pointLight.position.x = pandaCar.positionX / 10 + 8;
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
