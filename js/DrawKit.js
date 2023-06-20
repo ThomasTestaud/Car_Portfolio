@@ -23,9 +23,9 @@ class DrawKit {
             const material = new THREE.MeshToonMaterial({ color: this.textColor });
 
             const textMesh = new THREE.Mesh(textGeometry, material);
-            textMesh.castShadow = true; // Enable casting shadows
+            //textMesh.castShadow = true; // Enable casting shadows
             textMesh.position.set(x, y, z);
-            textMesh.rotation.x = -0.1;
+            textMesh.rotation.x = -1.58;
             this.scene.add(textMesh); // Access this.scene instead of scene
         });
     }
@@ -35,7 +35,7 @@ class DrawKit {
 
         // Load the grass texture and normal map
         const textureLoader = new THREE.TextureLoader();
-        const grassNormalMap = textureLoader.load('normal.jpeg');
+        //const grassNormalMap = textureLoader.load('normal.jpeg');
 
 
         // Create the material with the grass texture and normal map
@@ -59,6 +59,25 @@ class DrawKit {
         mesh.receiveShadow = true; // Enable receiving shadows
         this.scene.add(mesh);
         this.roadAtX += roadLength;
+    }
+
+
+    drawPineTree(x, z) {
+        let geometry = new THREE.CylinderGeometry(0.5, 0.5, 3, 5);;
+        let material = new THREE.MeshToonMaterial({ color: 0x917a28, receiveShadow: true }); // Enable receiving shadows
+        let mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(x, 1.5, z);
+        mesh.castShadow = true; // Enable casting shadows
+        mesh.receiveShadow = true; // Enable receiving shadows
+        this.scene.add(mesh);
+
+        geometry = new THREE.CylinderGeometry(0, 2, 5, 5);;
+        material = new THREE.MeshToonMaterial({ color: 0x008909, receiveShadow: true }); // Enable receiving shadows
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(x, 5, z);
+        mesh.castShadow = true; // Enable casting shadows
+        mesh.receiveShadow = true; // Enable receiving shadows
+        this.scene.add(mesh);
     }
 }
 

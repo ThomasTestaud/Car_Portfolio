@@ -4,31 +4,41 @@ import { OutlineEffect } from '../../utils/shaders/OutlineEffect.js';
 import Car from './Car.js'
 import RC from './RC.js'
 import DrawKit from './DrawKit.js'
-
+/*
 var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
+*/
+var WIDTH = 700;
+var HEIGHT = 700;
 
 var renderer, effect, scene, camera;
 
-camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1550);
+camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.1, 1550);
+
 camera.position.z = 50;
-camera.position.y = 20;
+camera.position.y = 40;
 camera.position.x = 4;
 
 scene = new THREE.Scene();
-scene.background = new THREE.Color(0x00a1ff);
+scene.background = new THREE.Color(0xffffff);
 
 ///////////Light/////////////
-const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(0, 30, -30);
-pointLight.castShadow = true; // Enable casting shadows
+const pointLight = new THREE.PointLight(0xffffff, 0.9);
+pointLight.position.set(0, 50, -10);
+//pointLight.castShadow = true; // Enable casting shadows
 pointLight.shadow.mapSize.width = 500;
 pointLight.shadow.mapSize.height = 500;
-pointLight.shadow.bias = -0.001;
+//pointLight.shadow.bias = -0.001;
 scene.add(pointLight);
 const lightHelper = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelper);
 /////////////////////////
+/*
+const pointLight2 = new THREE.PointLight(0xffffff, 2);
+pointLight2.position.set(0, 60, 30);*/
+//scene.fog = new THREE.FogExp2(0xffffff, 0.01);
+
+
 
 // Renderer
 renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -100,9 +110,27 @@ function generateRandomPath() {
     }
 }
 generateRandomPath();
+let xx = 0;
+for (let i = 0; i < 3; i++) {
+    drawKit.drawPineTree(xx + 0, -5);
+    drawKit.drawPineTree(xx + 5, 7);
+    drawKit.drawPineTree(xx + 15, 10);
+    drawKit.drawPineTree(xx + 20, -6);
+    drawKit.drawPineTree(xx + 22, -10);
 
+    drawKit.drawPineTree(xx + 30, -5);
+    drawKit.drawPineTree(xx + 35, 7);
+    drawKit.drawPineTree(xx + 45, 10);
+    drawKit.drawPineTree(xx + 50, -6);
+    drawKit.drawPineTree(xx + 62, -10);
 
-
+    drawKit.drawPineTree(xx + 70, -5);
+    drawKit.drawPineTree(xx + 85, 13);
+    drawKit.drawPineTree(xx + 85, 19);
+    drawKit.drawPineTree(xx + 90, -6);
+    drawKit.drawPineTree(xx + 102, -10);
+    xx += 100
+}
 
 
 
@@ -113,7 +141,6 @@ generateRandomPath();
 /// Queries
 let pres1 = document.querySelector('#présentation-1');
 let pres2 = document.querySelector('#présentation-2');
-let pres3 = document.querySelector('#présentation-3');
 
 let stackTech = document.querySelector('#stack-technique');
 
@@ -130,7 +157,6 @@ let contact = document.querySelector('#contact');
 function hideAll() {
     pres1.classList.add('none');
     pres2.classList.add('none');
-    pres3.classList.add('none');
     stackTech.classList.add('none');
     projet1.classList.add('none');
     projet2.classList.add('none');
@@ -141,84 +167,69 @@ function hideAll() {
     contact.classList.add('none');
 }
 
-const elementsSpread = {
-    'pres1': 0,
-    'pres2': 20,
-    'pres3': 40,
-    'stackTech': 60,
-    'projet1': 100,
-    'projet2': 140,
-    'projet3': 180,
-    'expPro1': 220,
-    'expPro2': 260,
-    'expPro3': 280,
-    'contact': 300,
-};
-
-/* LINE
-let geometry = new THREE.BoxGeometry(0.2, 0.01, 55);
-let material = new THREE.MeshToonMaterial({ color: 0xffffff, });
-let mesh = new THREE.Mesh(geometry, material);
-mesh.position.set(elementsSpread['pres1'], 0, 0);
-scene.add(mesh);
-*/
-
-drawKit.writeIn('Bienvenue', elementsSpread['pres1'], 0.5, -4);
 
 
 
-drawKit.writeIn('A propos de moi', elementsSpread['pres2'], 0.5, -7);
 
-drawKit.writeIn('Stack technique', elementsSpread['stackTech'], 0.5, -3);
 
-drawKit.writeIn('Projet : Events_On_Time', elementsSpread['projet1'], 0.5, 5);
+
+
+// Draw lines and text on sections
+// Add eventListeners on nav
+let sections = document.querySelectorAll('section');
+sections.forEach((section) => {
+    let btn = document.querySelector('#' + section.dataset.btnid);
+    btn.addEventListener('click', function () {
+        pandaCar.positionX = section.dataset.x * 10;
+        pandaCar.speed = 0.5;
+
+    })
+    drawKit.writeIn(section.dataset.name, section.dataset.x / 1 + 1, 0.5, 24);
+    // LINE
+    let geometry = new THREE.BoxGeometry(0.3, 0.03, 50);
+    let material = new THREE.MeshToonMaterial({ color: 0xffffff, });
+    let mesh = new THREE.Mesh(geometry, material);
+
+    mesh.position.set(section.dataset.x, 0, 0);
+    scene.add(mesh);
+});
+
+
+
+
+
+
 
 
 function animate() {
     pandaCar.refresh();
 
     hideAll();
-    if (car.position.x > elementsSpread['pres1'] && car.position.x < elementsSpread['pres2']) {
-        pres1.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['pres2'] && car.position.x < elementsSpread['pres3']) {
-        pres2.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['pres3'] && car.position.x < elementsSpread['stackTech']) {
-        pres3.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['stackTech'] && car.position.x < elementsSpread['projet1']) {
-        stackTech.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['projet1'] && car.position.x < elementsSpread['projet2']) {
-        projet1.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['projet2'] && car.position.x < elementsSpread['projet3']) {
-        projet2.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['projet3'] && car.position.x < elementsSpread['expPro1']) {
-        projet3.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['expPro1'] && car.position.x < elementsSpread['expPro2']) {
-        expPro1.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['expPro2'] && car.position.x < elementsSpread['expPro3']) {
-        expPro2.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['expPro3'] && car.position.x < elementsSpread['contact']) {
-        expPro3.classList.remove('none');
-
-    } else if (car.position.x >= elementsSpread['contact']) {
-        contact.classList.remove('none');
+    for (let i = 0; i < sections.length - 1; i++) {
+        const section = sections[i];
+        if (car.position.x > section.dataset.x && car.position.x < sections[i + 1].dataset.x) {
+            section.classList.remove('none');
+            container.classList.remove('top-right');
+            container.classList.add(section.dataset.class);
+        } else if (car.position.x > sections[sections.length - 1].dataset.x) {
+            sections[sections.length - 1].classList.remove('none');
+        }
     }
+
 
 
     car.position.x = pandaCar.positionX / 10;
     car.position.z = pandaCar.positionY / 10;
     car.rotation.y = THREE.MathUtils.degToRad(pandaCar.direction) * -1;
 
-    camera.position.x = pandaCar.positionX / 10 + 5;
-    camera.position.z = pandaCar.positionY / 10 + 40;
+
+
+    camera.position.y = 50;
+
+
+    camera.position.x = pandaCar.positionX / 10 + 30;
+    camera.position.z = pandaCar.positionY / 10 + 70;
+
 
     pointLight.position.x = pandaCar.positionX / 10 + 8;
 

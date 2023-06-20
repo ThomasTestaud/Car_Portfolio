@@ -17,7 +17,7 @@
 		body {
 			font-family: Monospace;
 			font-weight: bold;
-			background-color: #ccccff;
+			background-color: #ffffff;
 			margin: 0px;
 			overflow: hidden;
 		}
@@ -26,8 +26,19 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-			height: 100%;
-			width: 100%;
+			height: 700px;
+			width: 700px;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			overflow: hidden;
+			z-index: 0;
+			transition: transform 1s;
+		}
+
+		.top-right {
+			transform: scale(0.5) translate(-75%, -75%) !important;
 		}
 
 		.radio-controller {
@@ -85,6 +96,35 @@
 			grid-area: 2 / 5 / 3 / 6;
 		}
 
+		header {
+			z-index: 3;
+			position: sticky;
+			top: 0px;
+
+		}
+
+		nav {
+			/*border: 1px solid red;*/
+			max-width: 1300px;
+			margin: auto;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		nav button {
+			border: transparent;
+			background-color: inherit;
+			width: 100%;
+			cursor: pointer;
+			text-decoration: underline rgba(0, 0, 0, 0);
+			padding: 10px;
+			transition: text-decoration 0.5s;
+		}
+
+		nav button:hover {
+			text-decoration: underline rgb(0, 0, 0);
+		}
+
 		main * {}
 
 		main {
@@ -94,14 +134,14 @@
 			height: 100%;
 			width: 100%;
 			z-index: 2;
-			color: white;
+			color: rgb(23, 23, 23);
 			/*overflow-x: scroll;*/
 		}
 
 		section {
 			display: flex;
 			justify-content: space-between;
-			margin: 50px;
+			margin: 5rem;
 			animation: appear 1s;
 		}
 
@@ -110,7 +150,7 @@
 			min-height: 200px;
 			padding: 50px;
 			/*border: 1px solid blue;*/
-			background: rgba(255, 255, 255, 0.248);
+			/*background: rgba(255, 255, 255, 0.248);*/
 			border-radius: 1rem;
 		}
 
@@ -123,9 +163,11 @@
 		}
 
 		iframe {
+			margin-top: 1rem;
 			width: 350px;
 			height: 550px;
 			border-radius: 1rem;
+			box-shadow: 1px 1px 5px;
 		}
 
 		@keyframes appear {
@@ -160,6 +202,16 @@
 </head>
 
 <body>
+	<header>
+		<nav>
+			<button id="présentation-1-btn">Bienvenue</button>
+			<button id="présentation-2-btn">A mon propos</button>
+			<button id="stack-technique-btn">Stack Technique</button>
+			<button id="projet-btn">Projets</button>
+			<button id="experience-pro-btn">Expérience Professionnelle</button>
+			<button id="contact-btn">Contact</button>
+		</nav>
+	</header>
 	<div id="ThreeJS"></div>
 
 	<div class="radio-controller">
@@ -170,41 +222,42 @@
 	</div>
 
 	<main>
-		<section class="none" id="présentation-1">
-			<div class="card">
-				<h2>Bienvenue sur mon portfolio,</h2>
-			</div>
+		<section class="none" id="présentation-1" data-id="présentation-1" data-btnid="présentation-1-btn"
+			data-name="Bienvenue" data-x="0" data-class="center">
+
+			<h2>Bienvenue sur mon portfolio,</h2>
+
 		</section>
-		<section class="none" id="présentation-2">
+		<section class="none" id="présentation-2" data-id="présentation-2" data-btnid="présentation-2-btn"
+			data-name="A propos de moi" data-x="20" data-class="top-right">
 			<div class="card">
 				<h2>Je suis Thomas Testaud, développeur web fullstack</h2>
 			</div>
 		</section>
-		<section class="none" id="présentation-3">
-			<div class="card">
-				<h2>Blablabla à propos de moi</h2>
-			</div>
-		</section>
-		<section class="none" id="stack-technique">
+		<section class="none" id="stack-technique" data-id="stack-technique" data-btnid="stack-technique-btn"
+			data-name="Stack technique" data-x="60" data-class="center">
 			<div class="card">
 				<h2>Stack technique: JS, PHP, Création Rest APIs, Framework Vue.js, Base de donnée MySQL, intégration
 					HTML5
 					/ CSS3...</h2>
 			</div>
 		</section>
-		<section class="none" id="projet-1">
+		<section class="none" id="projet-1" data-id="projet-1" data-btnid="projet-btn"
+			data-name="Projet : Events_on_time" data-x="100" data-class="center">
 			<div class="card">
 				<h2>Projets: Events_on_time</h2>
 			</div>
 
 			<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>
 		</section>
-		<section class="none" id="projet-2">
+		<section class="none" id="projet-2" data-id="projet-2" data-btnid="projet-btn"
+			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="center">
 			<div class="card">
-				<h2>Projets: Admin, stage</h2>
+				<h2>Ce site avec Three.JS</h2>
 			</div>
 		</section>
-		<section class="none" id="projet-3">
+		<section class="none" id="projet-3" data-id="projet-3" data-btnid="projet-btn" data-name="Projet : Pioupiou"
+			data-x="180" data-class="center">
 			<div class="card">
 				<h2>Projets: Pioupiou</h2>
 			</div>
@@ -212,16 +265,20 @@
 				src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
 				frameborder="0"></iframe>
 		</section>
-		<section class="none" id="experience-pro-1">
+		<section class="none" id="experience-pro-1" data-id="experience-pro-1" data-btnid="experience-pro-btn"
+			data-name="Développeur à Eight Bamboos" data-x="220" data-class="center">
 			<h2>Expérience pro: Stage Eight Bamboos</h2>
 		</section>
-		<section class="none" id="experience-pro-2">
+		<section class="none" id="experience-pro-2" data-id="experience-pro-2" data-btnid="experience-pro-btn"
+			data-name="Freelance technicien du son" data-x="260">
 			<h2>Expérience pro: Freelance technicien du son</h2>
 		</section>
-		<section class="none" id="experience-pro-3">
+		<section class="none" id="experience-pro-3" data-id="experience-pro-3" data-btnid="experience-pro-btn"
+			data-name="sushi-shop" data-x="280" data-class="center">
 			<h2>Expérience pro: sushi-shop</h2>
 		</section>
-		<section class="none" id="contact">
+		<section class="none" id="contact" data-id="contact" data-btnid="contact-btn" data-name="Contact" data-x="300"
+			data-class="center">
 			<h2>Contact: 06 77 98 48 57</h2>
 		</section>
 	</main>
