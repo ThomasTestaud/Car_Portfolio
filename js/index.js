@@ -65,7 +65,7 @@ requestAnimationFrame(render);
 /////// CAR JS IMPORT AND INITIALIZATION ///////
 //Creation of the objects of the game
 let rc = new RC();
-let pandaCar = new Car(-100, 0, 90, "panda", "red");
+let pandaCar = new Car(0, 0, 90, "panda", "red");
 // Start car
 pandaCar.engine();
 //Mapping of the RadioController object to the other objects
@@ -195,7 +195,7 @@ sections.forEach((section) => {
 });
 
 
-let classes = ["small-center", "top-right", "focus-center", "center"];
+let classes = ["small-center", "top-right", "focus-center", "center", "right", "medium-bottom"];
 
 function removeAllClasses() {
     classes.forEach((classe) => {
