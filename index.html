@@ -24,21 +24,34 @@
 
 		#ThreeJS {
 			position: fixed;
-			top: 0;
-			left: 0;
 			height: 700px;
 			width: 700px;
-			left: 50%;
+			right: 50%;
 			top: 50%;
-			transform: translate(-50%, -50%);
+			transform: scale(1) translate(50%, -50%);
 			border-radius: 50%;
 			overflow: hidden;
 			z-index: 0;
-			transition: transform 1s;
+			transition: transform 1s, right 1s, top 1s;
+			border: 1px solid red;
+		}
+
+		.center {
+			right: 50% !important;
+			top: 50% !important;
+			transform: scale(1) translate(50%, -50%) !important;
 		}
 
 		.top-right {
-			transform: scale(0.5) translate(-75%, -75%) !important;
+			transform: scale(0.5) translate(50%, -50%) !important;
+			right: 5rem !important;
+			top: 5rem !important;
+		}
+
+		.small-center {
+			transform: scale(0.5) translate(100%, -100%) !important;
+			right: 50% !important;
+			top: 50% !important;
 		}
 
 		.radio-controller {
@@ -229,13 +242,13 @@
 
 		</section>
 		<section class="none" id="présentation-2" data-id="présentation-2" data-btnid="présentation-2-btn"
-			data-name="A propos de moi" data-x="20" data-class="top-right">
+			data-name="A propos de moi" data-x="20" data-class="center">
 			<div class="card">
 				<h2>Je suis Thomas Testaud, développeur web fullstack</h2>
 			</div>
 		</section>
 		<section class="none" id="stack-technique" data-id="stack-technique" data-btnid="stack-technique-btn"
-			data-name="Stack technique" data-x="60" data-class="center">
+			data-name="Stack technique" data-x="60" data-class="small-center">
 			<div class="card">
 				<h2>Stack technique: JS, PHP, Création Rest APIs, Framework Vue.js, Base de donnée MySQL, intégration
 					HTML5
@@ -243,7 +256,7 @@
 			</div>
 		</section>
 		<section class="none" id="projet-1" data-id="projet-1" data-btnid="projet-btn"
-			data-name="Projet : Events_on_time" data-x="100" data-class="center">
+			data-name="Projet : Events_on_time" data-x="100" data-class="small-center">
 			<div class="card">
 				<h2>Projets: Events_on_time</h2>
 			</div>
@@ -251,13 +264,13 @@
 			<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>
 		</section>
 		<section class="none" id="projet-2" data-id="projet-2" data-btnid="projet-btn"
-			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="center">
+			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="focus-center">
 			<div class="card">
 				<h2>Ce site avec Three.JS</h2>
 			</div>
 		</section>
 		<section class="none" id="projet-3" data-id="projet-3" data-btnid="projet-btn" data-name="Projet : Pioupiou"
-			data-x="180" data-class="center">
+			data-x="180" data-class="small-center">
 			<div class="card">
 				<h2>Projets: Pioupiou</h2>
 			</div>
@@ -266,15 +279,15 @@
 				frameborder="0"></iframe>
 		</section>
 		<section class="none" id="experience-pro-1" data-id="experience-pro-1" data-btnid="experience-pro-btn"
-			data-name="Développeur à Eight Bamboos" data-x="220" data-class="center">
+			data-name="Développeur à Eight Bamboos" data-x="220" data-class="top-right">
 			<h2>Expérience pro: Stage Eight Bamboos</h2>
 		</section>
 		<section class="none" id="experience-pro-2" data-id="experience-pro-2" data-btnid="experience-pro-btn"
-			data-name="Freelance technicien du son" data-x="260">
+			data-name="Freelance technicien du son" data-x="260" data-class="top-right">
 			<h2>Expérience pro: Freelance technicien du son</h2>
 		</section>
 		<section class="none" id="experience-pro-3" data-id="experience-pro-3" data-btnid="experience-pro-btn"
-			data-name="sushi-shop" data-x="280" data-class="center">
+			data-name="sushi-shop" data-x="280" data-class="top-right">
 			<h2>Expérience pro: sushi-shop</h2>
 		</section>
 		<section class="none" id="contact" data-id="contact" data-btnid="contact-btn" data-name="Contact" data-x="300"
