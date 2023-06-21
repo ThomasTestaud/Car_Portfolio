@@ -250,11 +250,12 @@
 				<ul>
 					<li>GitHub</li>
 					<li>Visual Studio code</li>
-					<li>Création de solutions de paiement avec Stripe</li>
+					<li>Système de paiement Stripe</li>
 					<li>Architecture MVC</li>
 					<li>Architecture Découplée</li>
 					<li>Veille technologique</li>
 					<li>Programation Orienté Objet</li>
+					<li>Algorithmie avancée</li>
 				</ul>
 			</div>
 			<div class="card">
@@ -286,10 +287,18 @@
 				<h2>Projets: Events_on_time</h2>
 				<h3>Qu'es que c'est ?</h3>
 				<p>Events_on_time est une application pour créer, alimenter et monitorer des graphes en temps réel.</p>
-				<p>Ce projet est née de mon envie de pouvoir mesurer la récurence d'évènement de la vie quotidienne.</p>
+				<p>Ce projet est née de mon envie de pouvoir mesurer la récurence d'évènements de la vie quotidienne.
+				</p>
 				<h3>Que peut-on y faire ?</h3>
-				<p>On peut y créer un graphique pour y mesurer par example la fréquence à laquelle on fait du sport, on
-					postule à un poste ou on fait une crise d'allergie.</p>
+				<p>On peut y créer des graphiques pour y mesurer tout type de choses. Par example la fréquence à
+					laquelle vous faites du sport,
+					la fréquence à
+					laquelle votre chat vomis sur le tapis ou, plus utile, la fréquence de potentiel problèmes de
+					santée
+					chroniques, comme
+					des migraines ou des crises d'allergie.</p>
+				<p>Et si vous êtes développeurs, vous pouvez même automatiser celà en créant un bot qui fera une requête
+					à l'API à chaque fois qu'un certain type d'évènent se produira.</p>
 				<h4>Concrètement, on peut y :</h4>
 				<ul>
 					<li>Créer des compte</li>
@@ -297,11 +306,13 @@
 					<li>Ajouter des evenements aux graphiques</li>
 					<li>Gérer les différents paramètres d'affichages, notamment sommer les évènements par groupe de
 						temps</li>
+					<li>Accéder à l'écriture et la lecture de graphiques en passant directement par l'API</li>
 				</ul>
 				<h3>Comment c'est fait ?</h3>
 				<p>Events_on_time utilise une architecture découplée. C'est à dire que le back-end est totalement
 					indépendent dur front-end, et vise-versa. Ils ne sont d'ailleur même pas héberger sur le même
-					serveur.</p>
+					serveur. Ils communiquent entre eux grâce à des chaine de charachères au format JSON.</p>
+
 				<h4>Le front-end :</h4>
 				<h4>Le back-end :</h4>
 			</div>
@@ -312,12 +323,34 @@
 			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="focus-center">
 			<div class="card">
 				<h2>Ce site avec Three.JS</h2>
+
 			</div>
 		</section>
 		<section class="none" id="projet-3" data-id="projet-3" data-btnid="projet-btn" data-name="Projet : Pioupiou"
 			data-x="180" data-class="small-center">
 			<div class="card">
 				<h2>Projets: Pioupiou</h2>
+				<h3>Qu'es que c'est ?</h3>
+				<p>Pioupiou est la base un réseau social tout à fait comme les autres.</p>
+				<h3>Que peut-on y faire ?</h3>
+				<ul>
+					<li>Créer des comptes et s'y connecter</li>
+					<li>Personnaliser son profil avec des photos et une description personnelle</li>
+					<li>Rechercher d'autres utilisateurs</li>
+					<li>Rédiger des posts pouvant contenir des photos et fichiers audio</li>
+					<li>Commenter des posts</li>
+					<li>Jouer à un super mini-jeux !</li>
+				</ul>
+
+				<h3>Comment c'est fait ?</h3>
+				<p>Pioupiou est pricipalement codé en PHP 8, suivant une architechture MVC.</p>
+				<p>Il est doté de :</p>
+				<ul>
+					<li>Un système de sécurité permettant de hasher les mots de passes</li>
+					<li>Un système de token permettant de vérifier les droits d'un utilisateur à chaque action
+						effecturer (suppression d'un post, commentaire, etc)</li>
+					<li>De profils modérateur ayant le droit de suprimmer n'importe quel post</li>
+				</ul>
 			</div>
 			<iframe
 				src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
