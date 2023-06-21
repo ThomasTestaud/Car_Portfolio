@@ -32,8 +32,7 @@
 			border-radius: 50%;
 			overflow: hidden;
 			z-index: 0;
-			transition: transform 1s, right 1s, top 1s;
-			border: 1px solid red;
+			transition: transform 1s, right 1s, top 1s, border-radius 0.5s, width 1s;
 		}
 
 		.center {
@@ -43,21 +42,26 @@
 		}
 
 		.top-right {
-			transform: scale(0.5) translate(50%, -50%) !important;
-			right: 5rem !important;
-			top: 5rem !important;
+			transform: scale(0.8) translate(90%, -80%) !important;
+			right: 25% !important;
+			top: 50% !important;
 		}
 
 		.small-center {
-			transform: scale(0.5) translate(100%, -100%) !important;
+			transform: scale(0.75) translate(60%, -75%) !important;
 			right: 50% !important;
 			top: 50% !important;
+		}
+
+		.focus-center {
+			border-radius: 5rem !important;
 		}
 
 		.radio-controller {
 			position: fixed;
 			bottom: 50px;
 			left: 50%;
+
 			transform: translate(0% -50%);
 		}
 

@@ -197,7 +197,12 @@ sections.forEach((section) => {
 
 let classes = ["small-center", "top-right", "focus-center", "center"];
 
-
+function removeAllClasses() {
+    classes.forEach((classe) => {
+        container.classList.remove(classe);
+        //console.log(classe);
+    });
+}
 
 
 
@@ -208,13 +213,12 @@ function animate() {
     for (let i = 0; i < sections.length - 1; i++) {
         const section = sections[i];
         if (car.position.x > section.dataset.x && car.position.x < sections[i + 1].dataset.x) {
-            classes.forEach((classe) => {
-                container.classList.remove(classe);
-                //console.log(classe);
-            });
+            removeAllClasses();
+            section.classList.remove('none');
             //container.classList.remove('top-right');
             container.classList.add(section.dataset.class);
         } else if (car.position.x > sections[sections.length - 1].dataset.x) {
+            removeAllClasses();
             sections[sections.length - 1].classList.remove('none');
         }
     }
