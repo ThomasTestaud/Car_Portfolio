@@ -9,6 +9,9 @@
 
 	<style>
 		/*** GENERAL ***/
+		html {
+			height: 100%;
+		}
 
 		body {
 			font-family: Monospace;
@@ -17,6 +20,7 @@
 			margin: 0px;
 			overflow: hidden;
 			font-size: 20px;
+			height: 100%;
 		}
 
 		.none {
@@ -42,89 +46,75 @@
 		nav button {
 			border: transparent;
 			background-color: inherit;
-			width: 100%;
+			/*width: 100%;*/
 			cursor: pointer;
 			text-decoration: underline rgba(0, 0, 0, 0);
 			padding: 10px;
 			transition: text-decoration 0.5s;
+
 		}
 
 		nav button:hover {
 			text-decoration: underline rgb(0, 0, 0);
 		}
 
-		/*** THREE JS ***/
+		nav .parent-menu {
+			position: relative;
+		}
 
-		#ThreeJS {
-			position: fixed;
-			height: 700px;
-			width: 700px;
-			right: 50%;
-			top: 50%;
-			transform: scale(1) translate(50%, -50%);
-			border-radius: 50%;
+		nav .parent-menu .children-menu {
+			position: absolute;
+			left: 50%;
+			top: 100%;
+			border: 1px solid black;
+			display: none;
+		}
+
+		nav .parent-menu:hover .children-menu {
+			display: flex;
+			white-space: nowrap;
 			overflow: hidden;
-			z-index: 0;
-			transition: transform 1s, right 1s, top 1s, border-radius 0.5s, width 1s;
+			text-overflow: ellipsis;
+			transform: translate(-50%, 0%);
 		}
 
-		.center {
-			right: 50% !important;
-			top: 50% !important;
-			transform: scale(1) translate(50%, -50%) !important;
+		nav .children-menu button:hover {
+			background-color: rgba(0, 0, 0, 0.11);
 		}
 
-		.top-right {
-			transform: scale(0.8) translate(90%, -80%) !important;
-			right: 25% !important;
-			top: 50% !important;
-		}
 
-		.right {
-			transform: scale(1) translate(50%, -50%) !important;
-			right: 35% !important;
-			top: 50% !important;
-		}
-
-		.small-center {
-			transform: scale(0.75) translate(60%, -75%) !important;
-			right: 50% !important;
-			top: 50% !important;
-		}
-
-		.focus-center {
-			border-radius: 5rem !important;
-		}
-
-		.medium-bottom {
-			right: 50% !important;
-			top: 60% !important;
-			transform: scale(1) translate(50%, -50%) !important;
-		}
 
 		/*** MAIN ***/
 		main {
-			position: fixed;
+			position: absolute;
 			top: 0;
-			left: 0;
+			transform: translate(-50%, 0%);
+			left: 50%;
 			height: 100%;
 			width: 100%;
-			z-index: 2;
 			color: rgb(23, 23, 23);
+			/*border: 1px solid red;*/
+			max-width: 1700px;
+			margin: auto;
+
 		}
 
 		section {
+			z-index: 2;
 			display: flex;
 			justify-content: space-between;
-			margin: 5rem;
+			margin: 5rem 0rem;
 			animation: appear 1s;
+			max-height: 95%;
+			/*border: 1px solid blue;*/
 		}
 
 		.card {
 			width: 600px;
-			min-height: 200px;
-			padding: 50px;
+			max-height: 100%;
+			padding-top: 50px;
 			border-radius: 1rem;
+			/*overflow: scroll;*/
 		}
 
 		.disapear {
@@ -133,10 +123,12 @@
 
 		iframe {
 			margin-top: 1rem;
-			width: 350px;
-			height: 550px;
+			min-width: 300px;
+			min-height: 500px;
+			width: 25%;
+			height: 80vh;
 			border-radius: 1rem;
-			box-shadow: 1px 1px 5px;
+			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.581);
 		}
 
 		@keyframes appear {
@@ -173,9 +165,9 @@
 			transform: translate(-50%, 0%);
 			z-index: 3;
 			position: fixed;
-			bottom: 4em;
-			width: 12rem;
-			height: 8rem;
+			bottom: 2em;
+			width: 9rem;
+			height: 6rem;
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			grid-template-rows: repeat(2, 1fr);
@@ -198,6 +190,55 @@
 		#rc-right {
 			grid-area: 2 / 3 / 3 / 4;
 		}
+
+		/*** THREE JS ***/
+
+		#ThreeJS {
+			position: absolute;
+			height: 700px;
+			width: 700px;
+			right: 50%;
+			top: 50%;
+			transform: scale(1) translate(50%, -50%);
+			border-radius: 50%;
+			overflow: hidden;
+			z-index: -1;
+			transition: transform 1s, right 1s, top 1s, border-radius 3s, width 1s;
+		}
+
+		.center {
+			right: 50% !important;
+			top: 50% !important;
+			transform: scale(1) translate(50%, -50%) !important;
+		}
+
+		.top-right {
+			transform: scale(0.8) translate(10%, -80%) !important;
+			right: 0% !important;
+			top: 50% !important;
+		}
+
+		.right {
+			transform: scale(1) translate(0%, -50%) !important;
+			right: 0% !important;
+			top: 50% !important;
+		}
+
+		.small-center {
+			transform: scale(0.70) translate(15%, -75%) !important;
+			right: 30% !important;
+			top: 50% !important;
+		}
+
+		.focus-center {
+			border-radius: 5rem !important;
+		}
+
+		.medium-bottom {
+			right: 50% !important;
+			top: 60% !important;
+			transform: scale(1) translate(50%, -50%) !important;
+		}
 	</style>
 	<script src="../utils/libraries/three.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -211,21 +252,36 @@
 			<button id="présentation-1-btn">Bienvenue</button>
 			<button id="présentation-2-btn">A mon propos</button>
 			<button id="stack-technique-btn">Stack Technique</button>
-			<button id="projet-btn">Projets</button>
-			<button id="experience-pro-btn">Expérience Professionnelle</button>
+			<div class="parent-menu">
+				<button id="projet-btn">Projets</button>
+				<div class="children-menu">
+					<button id="btn-projet-1">Events_on_Time</button>
+					<button id="btn-projet-2">Ce site web</button>
+					<button id="btn-projet-3">Un réseau social</button>
+				</div>
+			</div>
+			<div class="parent-menu">
+				<button id="experience-pro-btn">Expérience Professionnelle</button>
+				<div class="children-menu">
+					<button id="btn-exp-1">Développeur Web</button>
+					<button id="btn-exp-2">Technicien du son Freelance</button>
+					<button id="btn-exp-3">Restauration</button>
+				</div>
+			</div>
 			<button id="contact-btn">Contact</button>
 		</nav>
 	</header>
-	<div id="ThreeJS"></div>
-
-	<div class="radio-controller">
-		<button id="rc-up">Up</button>
-		<button id="rc-down">Down</button>
-		<button id="rc-left">Left</button>
-		<button id="rc-right">Right</button>
-	</div>
 
 	<main>
+		<div>
+			<div id="ThreeJS"></div>
+			<div class="radio-controller">
+				<button id="rc-up">Up</button>
+				<button id="rc-down">Down</button>
+				<button id="rc-left">Left</button>
+				<button id="rc-right">Right</button>
+			</div>
+		</div>
 		<section class="none" id="présentation-1" data-id="présentation-1" data-btnid="présentation-1-btn"
 			data-name="Bienvenue" data-x="0" data-class="center">
 			<h2>Bienvenue sur mon portfolio,</h2>
@@ -281,7 +337,7 @@
 				</ul>
 			</div>
 		</section>
-		<section class="none" id="projet-1" data-id="projet-1" data-btnid="projet-btn"
+		<section class="none" id="projet-1" data-id="projet-1" data-btnid="btn-projet-1"
 			data-name="Projet : Events_on_time" data-x="100" data-class="small-center">
 			<div class="card">
 				<h2>Projets: Events_on_time</h2>
@@ -297,6 +353,9 @@
 					santée
 					chroniques, comme
 					des migraines ou des crises d'allergie.</p>
+				<p>Pour cela, décidez de quoi mesurer, puis créez un graphe dédié. Enssuite, à chaque fois que cet
+					évenement aura lieux, apuyez sur le boutton "Add Event". Vous pourez enssuite visualiser la courbe
+					produite.</p>
 				<p>Et si vous êtes développeurs, vous pouvez même automatiser celà en créant un bot qui fera une requête
 					à l'API à chaque fois qu'un certain type d'évènent se produira.</p>
 				<h4>Concrètement, on peut y :</h4>
@@ -319,14 +378,14 @@
 
 			<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>
 		</section>
-		<section class="none" id="projet-2" data-id="projet-2" data-btnid="projet-btn"
+		<section class="none" id="projet-2" data-id="projet-2" data-btnid="btn-projet-2"
 			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="focus-center">
 			<div class="card">
 				<h2>Ce site avec Three.JS</h2>
 
 			</div>
 		</section>
-		<section class="none" id="projet-3" data-id="projet-3" data-btnid="projet-btn" data-name="Projet : Pioupiou"
+		<section class="none" id="projet-3" data-id="projet-3" data-btnid="btn-projet-3" data-name="Projet : Pioupiou"
 			data-x="180" data-class="small-center">
 			<div class="card">
 				<h2>Projets: Pioupiou</h2>
@@ -356,15 +415,15 @@
 				src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
 				frameborder="0"></iframe>
 		</section>
-		<section class="none" id="experience-pro-1" data-id="experience-pro-1" data-btnid="experience-pro-btn"
+		<section class="none" id="experience-pro-1" data-id="experience-pro-1" data-btnid="btn-exp-1"
 			data-name="Développeur à Eight Bamboos" data-x="220" data-class="top-right">
 			<h2>Expérience pro: Stage Eight Bamboos</h2>
 		</section>
-		<section class="none" id="experience-pro-2" data-id="experience-pro-2" data-btnid="experience-pro-btn"
+		<section class="none" id="experience-pro-2" data-id="experience-pro-2" data-btnid="btn-exp-2"
 			data-name="Freelance technicien du son" data-x="260" data-class="top-right">
 			<h2>Expérience pro: Freelance technicien du son</h2>
 		</section>
-		<section class="none" id="experience-pro-3" data-id="experience-pro-3" data-btnid="experience-pro-btn"
+		<section class="none" id="experience-pro-3" data-id="experience-pro-3" data-btnid="btn-exp-3"
 			data-name="sushi-shop" data-x="280" data-class="top-right">
 			<h2>Expérience pro: sushi-shop</h2>
 		</section>

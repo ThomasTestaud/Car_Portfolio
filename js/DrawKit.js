@@ -31,7 +31,7 @@ class DrawKit {
     }
 
     drawGrass() {
-        const geometry = new THREE.BoxGeometry(330, 0.5, 50);
+        const geometry = new THREE.BoxGeometry(500, 0.5, 50);
 
         // Load the grass texture and normal map
         const textureLoader = new THREE.TextureLoader();
@@ -45,7 +45,7 @@ class DrawKit {
         });
 
         const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(330 / 2 - 20, -0.25, 0);
+        mesh.position.set(400 / 2 - 0, -0.25, 0);
         mesh.receiveShadow = true;
         this.scene.add(mesh);
     }
