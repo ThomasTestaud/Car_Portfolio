@@ -8,8 +8,8 @@ import DrawKit from './DrawKit.js'
 var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
 */
-var WIDTH = 700;
-var HEIGHT = 700;
+let WIDTH = 700;
+let HEIGHT = 700;
 
 var renderer, effect, scene, camera;
 
@@ -207,6 +207,11 @@ function removeAllClasses() {
 
 
 function animate() {
+    /*
+        WIDTH = container.innerWidth;
+        HEIGHT = container.innerHeight;
+    */
+
     pandaCar.refresh();
 
     hideAll();
@@ -242,6 +247,9 @@ function animate() {
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
+
+
+
 }
 
 animate();
