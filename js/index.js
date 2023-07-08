@@ -4,12 +4,7 @@ import { OutlineEffect } from '../../utils/shaders/OutlineEffect.js';
 import Car from './Car.js'
 import RC from './RC.js'
 import DrawKit from './DrawKit.js'
-/*
-var WIDTH = window.innerWidth;
-var HEIGHT = window.innerHeight;
-let WIDTH = 700;
-let HEIGHT = 700;
-*/
+
 
 let div = document.getElementById('ThreeJS');
 let WIDTH = div.offsetWidth;
@@ -22,14 +17,14 @@ camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.1, 1550);
 camera.position.z = 50;
 camera.position.y = 40;
 camera.position.x = 4;
-camera.rotation.x = -0.7;
+//camera.rotation.x = -0.7;
 
 scene = new THREE.Scene();
-scene.background = new THREE.Color(0xffffff);
+//scene.background = new THREE.Color(0xffffff);
 
 ///////////Light/////////////
 const pointLight = new THREE.PointLight(0xffffff, 0.9);
-pointLight.position.set(0, 50, -10);
+pointLight.position.set(0, 60, -10);
 pointLight.shadow.mapSize.width = 500;
 pointLight.shadow.mapSize.height = 500;
 scene.add(pointLight);
@@ -37,9 +32,10 @@ const lightHelper = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelper);
 
 // Renderer
-renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(WIDTH, HEIGHT);
+renderer.setClearColor(0x000000, 0);
 effect = new OutlineEffect(renderer);
 
 renderer.shadowMap.enabled = true; // Enable shadow mapping
@@ -88,7 +84,7 @@ drawKit.drawGrass()
 // Road
 function generateRandomPath() {
     let x = 0;
-    for (let i = 0; i < 350; i++) {
+    for (let i = 0; i < 450; i++) {
         x += Math.random() - 0.5;
         drawKit.drawRoad(1, x);
     }
@@ -168,7 +164,7 @@ sections.forEach((section) => {
         //pandaCar.speed = 0.5;
 
     })
-    drawKit.writeIn(section.dataset.name, section.dataset.x / 1 + 1, 0.5, 24);
+    drawKit.writeIn(section.dataset.name, section.dataset.x / 1 + 1, 0.5, 22);
     // LINE
     let geometry = new THREE.BoxGeometry(0.3, 0.03, 50);
     let material = new THREE.MeshToonMaterial({ color: 0xffffff, });
@@ -187,6 +183,32 @@ function removeAllClasses() {
         //console.log(classe);
     });
 }
+
+
+
+
+
+
+// Changes of camera on mousemove
+let rotationOffset = 0;
+let rotationOffsetZ = 0;
+document.addEventListener("mousemove", function(event) {
+    let mouseX = event.clientX;
+    let mouseY = event.clientY;
+    
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    
+    rotationOffset = (mouseX - (windowWidth/2)) /windowWidth;
+    rotationOffsetZ = (mouseY - (windowHeight/2)) /windowHeight;
+
+});
+
+
+
+
+
+
 
 
 
@@ -220,11 +242,13 @@ function animate() {
 
 
 
-    camera.position.y = 50;
+    camera.position.y = 50 + rotationOffsetZ*10;
+    camera.position.x = pandaCar.positionX / 10 + 30 + rotationOffset*10;
+    camera.position.z = 0 / 10 + 70 ;
 
+    camera.rotation.y = rotationOffset/10;
+    camera.rotation.x = -0.7 - rotationOffsetZ/10;
 
-    camera.position.x = pandaCar.positionX / 10 + 30;
-    camera.position.z = pandaCar.positionY / 10 + 70;
 
 
     pointLight.position.x = pandaCar.positionX / 10 + 8;
@@ -233,7 +257,7 @@ function animate() {
     requestAnimationFrame(animate);
 
 
-
 }
 
 animate();
+

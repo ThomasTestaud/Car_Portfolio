@@ -42,18 +42,19 @@
 	</header>
 
 	<main>
-		<div>
-			<div id="ThreeJS"></div>
-			<div class="radio-controller">
-				<button id="rc-up">Up</button>
-				<button id="rc-down">Down</button>
-				<button id="rc-left">Left</button>
-				<button id="rc-right">Right</button>
-			</div>
+		<div id="ThreeJS"></div>
+		<div class="radio-controller">
+			<button id="rc-up">Up</button>
+			<button id="rc-down">Down</button>
+			<button id="rc-left">Left</button>
+			<button id="rc-right">Right</button>
 		</div>
 		<section class="none" id="présentation-1" data-id="présentation-1" data-btnid="présentation-1-btn"
 			data-name="Bienvenue" data-x="0" data-class="center">
 			<h2>Bienvenue sur mon portfolio,</h2>
+			<p>Utilisez les flèches du clavier pour conduire la voiture et naviguer ainsi sur le site.</p>
+			<p>Ou</p>
+			<p>Utilisez la barre de navigation en haut de la page, pour un expérience plus conventionnelle.</p>
 		</section>
 		<section class="none" id="présentation-2" data-id="présentation-2" data-btnid="présentation-2-btn"
 			data-name="A propos de moi" data-x="20" data-class="right">
@@ -70,119 +71,135 @@
 		<section class="none stack-technique" id="stack-technique" data-id="stack-technique"
 			data-btnid="stack-technique-btn" data-name="Stack technique" data-x="60" data-class="medium-bottom">
 			<h2>Stack technique</h2>
-			<div class="card">
-				<h3>General</h3>
-				<ul>
-					<li>GitHub</li>
-					<li>Visual Studio code</li>
-					<li>Système de paiement Stripe</li>
-					<li>Architecture MVC</li>
-					<li>Architecture Découplée</li>
-					<li>Veille technologique</li>
-					<li>Programation Orienté Objet</li>
-					<li>Algorithmie avancée</li>
-				</ul>
-			</div>
-			<div class="card">
-				<h3>Front-End</h3>
-				<ul>
-					<li>JavaScript</li>
-					<li>Framework Vue.js 3</li>
-					<li>HTML/CSS</li>
-					<li>Framework Three.js</li>
-					<li>Appels d'APIs</li>
-					<li>Programation de composants</li>
-				</ul>
-			</div>
-			<div class="card">
-				<h3>Back-End</h3>
-				<ul>
-					<li>PHP</li>
-					<li>MySQL</li>
-					<li>Framework Symfony 6</li>
-					<li>Composer</li>
-					<li>Création d'API Rest</li>
-					<li>Utilisation de JSON Web Tokens</li>
-				</ul>
+			<div class="content">
+				<div class="card">
+					<h3>General</h3>
+					<ul>
+						<li>GitHub</li>
+						<li>Visual Studio code</li>
+						<li>Système de paiement Stripe</li>
+						<li>Architecture MVC</li>
+						<li>Architecture Découplée</li>
+						<li>Veille technologique</li>
+						<li>Programation Orienté Objet</li>
+						<li>Algorithmie avancée</li>
+					</ul>
+				</div>
+				<div class="card">
+					<h3>Front-End</h3>
+					<ul>
+						<li>JavaScript</li>
+						<li>Framework Vue.js 3</li>
+						<li>HTML/CSS</li>
+						<li>Framework Three.js</li>
+						<li>Appels d'APIs</li>
+						<li>Programation de composants</li>
+					</ul>
+				</div>
+				<div class="card">
+					<h3>Back-End</h3>
+					<ul>
+						<li>PHP</li>
+						<li>MySQL</li>
+						<li>Framework Symfony 6</li>
+						<li>Composer</li>
+						<li>Création d'API Rest</li>
+						<li>Utilisation de JSON Web Tokens</li>
+					</ul>
+				</div>
 			</div>
 		</section>
 		<section class="none" id="projet-1" data-id="projet-1" data-btnid="btn-projet-1"
 			data-name="Projet : Events_on_time" data-x="100" data-class="small-center">
-			<div class="card">
-				<h2>Projets: Events_on_time</h2>
-				<h3>Qu'es que c'est ?</h3>
-				<p>Events_on_time est une application pour créer, alimenter et monitorer des graphes en temps réel.</p>
-				<p>Ce projet est née de mon envie de pouvoir mesurer la récurence d'évènements de la vie quotidienne.
-				</p>
-				<h3>Que peut-on y faire ?</h3>
-				<p>On peut y créer des graphiques pour y mesurer tout type de choses. Par example la fréquence à
-					laquelle vous faites du sport,
-					la fréquence à
-					laquelle votre chat vomis sur le tapis ou, plus utile, la fréquence de potentiel problèmes de
-					santée
-					chroniques, comme
-					des migraines ou des crises d'allergie.</p>
-				<p>Pour cela, décidez de quoi mesurer, puis créez un graphe dédié. Enssuite, à chaque fois que cet
-					évenement aura lieux, apuyez sur le boutton "Add Event". Vous pourez enssuite visualiser la courbe
-					produite.</p>
-				<p>Et si vous êtes développeurs, vous pouvez même automatiser celà en créant un bot qui fera une requête
-					à l'API à chaque fois qu'un certain type d'évènent se produira.</p>
-				<h4>Concrètement, on peut y :</h4>
-				<ul>
-					<li>Créer des compte</li>
-					<li>Créer et supprimer des graphiques</li>
-					<li>Ajouter des evenements aux graphiques</li>
-					<li>Gérer les différents paramètres d'affichages, notamment sommer les évènements par groupe de
-						temps</li>
-					<li>Accéder à l'écriture et la lecture de graphiques en passant directement par l'API</li>
-				</ul>
-				<h3>Comment c'est fait ?</h3>
-				<p>Events_on_time utilise une architecture découplée. C'est à dire que le back-end est totalement
-					indépendent dur front-end, et vise-versa. Ils ne sont d'ailleur même pas héberger sur le même
-					serveur. Ils communiquent entre eux grâce à des chaine de charachères au format JSON.</p>
+			<h2>Projets: Events_on_time</h2>
+			<div class="content">
+				<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>
+				<div class="card">
+					<h3>Qu'es que c'est ?</h3>
+					<p>Events_on_time est une application pour créer, alimenter et monitorer des graphes en temps réel.</p>
+					<p>Ce projet est née de mon envie de pouvoir mesurer la récurence d'évènements de la vie quotidienne.
+					</p>
+					<h3>Que peut-on y faire ?</h3>
+					<p>On peut y créer des graphiques pour y mesurer tout type de choses. Par example la fréquence à
+						laquelle vous faites du sport,
+						la fréquence à
+						laquelle votre chat vomis sur le tapis ou, plus utile, la fréquence de potentiel problèmes de
+						santée
+						chroniques, comme
+						des migraines ou des crises d'allergie.</p>
+					<p>Pour cela, décidez de quoi mesurer, puis créez un graphe dédié. Enssuite, à chaque fois que cet
+						évenement aura lieux, apuyez sur le boutton "Add Event". Vous pourez enssuite visualiser la courbe
+						produite.</p>
+					<p>Et si vous êtes développeurs, vous pouvez même automatiser celà en créant un bot qui fera une requête
+						à l'API à chaque fois qu'un certain type d'évènent se produira.</p>
+					<h4>Concrètement, on peut y :</h4>
+					<ul>
+						<li>Créer des compte</li>
+						<li>Créer et supprimer des graphiques</li>
+						<li>Ajouter des evenements aux graphiques</li>
+						<li>Gérer les différents paramètres d'affichages, notamment sommer les évènements par groupe de
+							temps</li>
+						<li>Accéder à l'écriture et la lecture de graphiques en passant directement par l'API</li>
+					</ul>
+					<h3>Comment c'est fait ?</h3>
+					<p>Events_on_time utilise une architecture découplée. C'est à dire que le back-end est totalement
+						indépendent dur front-end, et vise-versa. Ils ne sont d'ailleur même pas héberger sur le même
+						serveur. Ils communiquent entre eux grâce à des chaine de charachères au format JSON.</p>
 
-				<h4>Le front-end :</h4>
-				<h4>Le back-end :</h4>
+					<h4>Le front-end :</h4>
+					<h4>Le back-end :</h4>
+				</div>
 			</div>
-
-			<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>
 		</section>
 		<section class="none" id="projet-2" data-id="projet-2" data-btnid="btn-projet-2"
 			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="focus-center">
+			<h2>Ce site avec Three.JS</h2>
 			<div class="card">
-				<h2>Ce site avec Three.JS</h2>
-
+				<p>Ce site est née d'une envie simple : créer un système de navigation originale pour un site web.</p>
+				<p>J'avais déjà développer des petits jeux vidéo où l'on y conduis des voiture, et j'avais aussi développé des sites web classique. Alors pourquoi pas fusionner les deux ?</p>
+				<h3>Comment ce projet est fait :</h3>
+				<ul>
+					<li>Le rendu 3D est fait avec le framework Three.js</li>
+					<li>La voiture est doté d'un algorythme d'inertie développé par mes soins pour une acceleration proche de la réalitée</li>
+					<li>La forme du chemin et les emplacements des arbres sont généré de manière aléatoire sur la carte</li>
+				</ul>
+				<h2>CarCity</h2>
+				<p>Concernant l'algorythme de la voiture, j'ai réutilisé une partie du code de l'un de mes tout premiers projets de dev; un de ceux qui m'on fait tomber amoureux de la programation, le bien nommée CarCity :</p>
+				<iframe src="https://thomastestaud.sites.3wa.io/CarCity_PIOU.1/car.phtml" frameborder="0" style="width:400px;height:400px;"></iframe>
+				<p>C'est un petit jeu en JavaScript et CSS (les petites voitures sont bien modélisée en HTML/CSS) où l'on peut y conduire des petits voiture à travers une ville. Attention à ne pas vous prendre les murs !</p>
 			</div>
 		</section>
 		<section class="none" id="projet-3" data-id="projet-3" data-btnid="btn-projet-3" data-name="Projet : Pioupiou"
 			data-x="180" data-class="small-center">
-			<div class="card">
-				<h2>Projets: Pioupiou</h2>
-				<h3>Qu'es que c'est ?</h3>
-				<p>Pioupiou est la base un réseau social tout à fait comme les autres.</p>
-				<h3>Que peut-on y faire ?</h3>
-				<ul>
-					<li>Créer des comptes et s'y connecter</li>
-					<li>Personnaliser son profil avec des photos et une description personnelle</li>
-					<li>Rechercher d'autres utilisateurs</li>
-					<li>Rédiger des posts pouvant contenir des photos et fichiers audio</li>
-					<li>Commenter des posts</li>
-					<li>Jouer à un super mini-jeux !</li>
-				</ul>
+			<h2>Projets: Pioupiou</h2>
+			<div class="content">
+				<iframe
+					src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
+					frameborder="0"></iframe>
+				<div class="card">
+					<h3>Qu'es que c'est ?</h3>
+					<p>Pioupiou est la base un réseau social tout à fait comme les autres.</p>
+					<h3>Que peut-on y faire ?</h3>
+					<ul>
+						<li>Créer des comptes et s'y connecter</li>
+						<li>Personnaliser son profil avec des photos et une description personnelle</li>
+						<li>Rechercher d'autres utilisateurs</li>
+						<li>Rédiger des posts pouvant contenir des photos et fichiers audio</li>
+						<li>Commenter des posts</li>
+						<li>Jouer à un super mini-jeux !</li>
+					</ul>
 
-				<h3>Comment c'est fait ?</h3>
-				<p>Pioupiou est pricipalement codé en PHP 8, suivant une architechture MVC.</p>
-				<p>Il est doté de :</p>
-				<ul>
-					<li>Un système de sécurité permettant de hasher les mots de passes</li>
-					<li>Un système de token permettant de vérifier les droits d'un utilisateur à chaque action
-						effecturer (suppression d'un post, commentaire, etc)</li>
-					<li>De profils modérateur ayant le droit de suprimmer n'importe quel post</li>
-				</ul>
+					<h3>Comment c'est fait ?</h3>
+					<p>Pioupiou est pricipalement codé en PHP 8, suivant une architechture MVC.</p>
+					<p>Il est doté de :</p>
+					<ul>
+						<li>Un système de sécurité permettant de hasher les mots de passes</li>
+						<li>Un système de token permettant de vérifier les droits d'un utilisateur à chaque action
+							effecturer (suppression d'un post, commentaire, etc)</li>
+						<li>De profils modérateur ayant le droit de suprimmer n'importe quel post</li>
+					</ul>
+				</div>
 			</div>
-			<iframe
-				src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
-				frameborder="0"></iframe>
 		</section>
 		<section class="none" id="experience-pro-1" data-id="experience-pro-1" data-btnid="btn-exp-1"
 			data-name="Développeur à Eight Bamboos" data-x="220" data-class="top-right">
@@ -244,8 +261,13 @@
 			</div>
 		</section>
 		<section class="none" id="contact" data-id="contact" data-btnid="contact-btn" data-name="Contact" data-x="300"
-			data-class="center">
-			<h2>Contact: 06 77 98 48 57</h2>
+			data-class="small-center">
+			<h2>Contact :</h2>
+			<p>Tel : <a href="tel:0677984857">06 77 98 48 57</a></p>
+			<p>Email : <a href="mailto:thomas.testaud@hotmail.fr">thomas.testaud@hotmail.fr</a></p>
+			<p>Je vous invite à consulter le code de mes projets sur <a target="_blank" href="https://github.com/ThomasTestaud">GitHub</a></p>
+			<p>Et à m'ajouter à votre réseau <a target="_blank" href="https://www.linkedin.com/in/thomas-testaud/">LinkedIn</a></p>
+			<p>Merci pour votre visite, à bientôt !</p>
 		</section>
 	</main>
 

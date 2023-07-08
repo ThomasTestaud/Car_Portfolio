@@ -5,7 +5,7 @@ class DrawKit {
     linesColor = undefined;
     constructor(scene) {
         this.scene = scene;
-        this.roadAtX = -20;
+        this.roadAtX = -70;
     }
 
     writeIn(text, x, y, z) {
@@ -31,7 +31,7 @@ class DrawKit {
     }
 
     drawGrass() {
-        const geometry = new THREE.BoxGeometry(500, 0.5, 50);
+        const geometry = new THREE.BoxGeometry(800, 0.5, 50);
 
         // Load the grass texture and normal map
         const textureLoader = new THREE.TextureLoader();

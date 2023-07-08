@@ -20,7 +20,7 @@ class Car {
         this.model = model;
         this.color = color;
 
-
+        this.for = false;
         this.refresh();
     }
 
@@ -28,13 +28,18 @@ class Car {
 
     accelerate() {
         //console.log('forward');
-        this.gear += 1; //Change the target speed on 1
+        this.gear = 4; //Change the target speed on 1
         this.inercia(); //Call inertia() to reach that new target speed
+    }
+
+    toZero() {
+        this.gear = 0;
+        this.inercia();
     }
 
     decelerate() {
         //console.log('backward');
-        this.gear -= 1; //Change the target speed on 1
+        this.gear = -4; //Change the target speed on 1
         this.inercia(); //Call inertia() to reach that new target speed
 
     }

@@ -12,6 +12,7 @@ class RC { //RC is the Radio Controller of all objects in the game. It has to be
         })
         document.addEventListener("keyup", function (event) {
             if (event.code === "ArrowUp") {
+                x.toZero();
             }
         })
     }
@@ -24,6 +25,11 @@ class RC { //RC is the Radio Controller of all objects in the game. It has to be
         document.addEventListener("keydown", function (event) {
             if (event.code === "ArrowDown") {
                 x.decelerate();
+            }
+        })
+        document.addEventListener("keyup", function (event) {
+            if (event.code === "ArrowDown") {
+                x.toZero();
             }
         })
     }
