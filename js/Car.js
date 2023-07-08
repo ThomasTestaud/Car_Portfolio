@@ -2,8 +2,8 @@ class Car {
 
     used = true;
     acceleration = 0.1;
-    speed = 2;
-    gear = 2;
+    speed = 0;
+    gear = 0;
     positionX = 0;
     positionY = 0;
     direction = 90;

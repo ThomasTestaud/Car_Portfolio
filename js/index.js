@@ -7,9 +7,13 @@ import DrawKit from './DrawKit.js'
 /*
 var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
-*/
 let WIDTH = 700;
 let HEIGHT = 700;
+*/
+
+let div = document.getElementById('ThreeJS');
+let WIDTH = div.offsetWidth;
+let HEIGHT = div.offsetHeight;
 
 var renderer, effect, scene, camera;
 
@@ -18,6 +22,7 @@ camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.1, 1550);
 camera.position.z = 50;
 camera.position.y = 40;
 camera.position.x = 4;
+camera.rotation.x = -0.7;
 
 scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
@@ -25,20 +30,11 @@ scene.background = new THREE.Color(0xffffff);
 ///////////Light/////////////
 const pointLight = new THREE.PointLight(0xffffff, 0.9);
 pointLight.position.set(0, 50, -10);
-//pointLight.castShadow = true; // Enable casting shadows
 pointLight.shadow.mapSize.width = 500;
 pointLight.shadow.mapSize.height = 500;
-//pointLight.shadow.bias = -0.001;
 scene.add(pointLight);
 const lightHelper = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelper);
-/////////////////////////
-/*
-const pointLight2 = new THREE.PointLight(0xffffff, 2);
-pointLight2.position.set(0, 60, 30);*/
-//scene.fog = new THREE.FogExp2(0xffffff, 0.01);
-
-
 
 // Renderer
 renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -50,14 +46,8 @@ renderer.shadowMap.enabled = true; // Enable shadow mapping
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // S
 
 // Orbit Controls
-var controls = new OrbitControls(camera, renderer.domElement);
 var container = document.getElementById('ThreeJS');
 container.appendChild(renderer.domElement);
-function render() {
-    effect.render(scene, camera);
-    requestAnimationFrame(render);
-}
-requestAnimationFrame(render);
 
 
 
@@ -65,7 +55,7 @@ requestAnimationFrame(render);
 /////// CAR JS IMPORT AND INITIALIZATION ///////
 //Creation of the objects of the game
 let rc = new RC();
-let pandaCar = new Car(0, 0, 90, "panda", "red");
+let pandaCar = new Car(10, 0, 90, "panda", "red");
 // Start car
 pandaCar.engine();
 //Mapping of the RadioController object to the other objects
@@ -79,23 +69,17 @@ map(pandaCar);
 ///////////////////////////////////////////////
 
 
-
-
-
 /// DRAW ///
-
 const drawKit = new DrawKit(scene);
 
 // Draw car
 const carShape = new THREE.BoxGeometry(2, 2, 3);
 const carMaterial = new THREE.MeshToonMaterial({ color: 0xff0000, });
-carMaterial.shadowBias = -100;
 const car = new THREE.Mesh(carShape, carMaterial);
 car.position.set(0, 1, 0);
 car.castShadow = true; // Enable casting shadows
 car.receiveShadow = true; // Enable receiving shadows
 scene.add(car);
-
 
 
 // Grass
@@ -180,8 +164,8 @@ let sections = document.querySelectorAll('section');
 sections.forEach((section) => {
     let btn = document.querySelector('#' + section.dataset.btnid);
     btn.addEventListener('click', function () {
-        pandaCar.positionX = section.dataset.x * 10;
-        pandaCar.speed = 0.5;
+        pandaCar.positionX = section.dataset.x * 10 + 10;
+        //pandaCar.speed = 0.5;
 
     })
     drawKit.writeIn(section.dataset.name, section.dataset.x / 1 + 1, 0.5, 24);
