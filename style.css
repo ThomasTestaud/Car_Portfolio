@@ -14,15 +14,32 @@ body
 {
 	font-family: Monospace;
 	font-weight: bold;
-	background-color: #ffffff;
+	/*background-color: #fcf8de;*/
+    background-color: #97e3ff;
 	margin: 0px;
 	overflow: hidden;
 	font-size: 20px;
 	height: 100%;
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Climate Crisis', cursive;
+}
+
+p {
+    /*margin-left : 2rem;*/
+    text-align: justify;
 }
 
 .none {
 	display: none;
+}
+
+strong {
+    text-decoration: underline;
 }
 
 /*** HEADER ***/
@@ -47,6 +64,9 @@ nav button {
 	text-decoration: underline rgba(0, 0, 0, 0);
 	padding: 10px;
 	transition: text-decoration 0.5s;
+    position: relative;
+    z-index: 1;
+    /*font-weight: 500;*/
 }
 
 nav button:hover {
@@ -61,8 +81,9 @@ nav .parent-menu .children-menu {
 	position: absolute;
 	left: 50%;
 	top: 100%;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 	display: none;
+    border-radius: 1rem;
 }
 
 nav .parent-menu:hover .children-menu {
@@ -71,11 +92,55 @@ nav .parent-menu:hover .children-menu {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	transform: translate(-50%, 0%);
+    background-color: rgba(255, 255, 255, 0.537);
 }
 
 nav .children-menu button:hover {
 	background-color: rgba(0, 0, 0, 0.11);
 }
+
+.nav-element {
+    position: relative;
+}
+
+
+nav svg {
+    position: absolute;
+    height: 40px;
+    top: 0px;
+    left: 50%;
+    z-index: 0;
+    transform: translate(-30%, 0%);
+    transition: transform 0.5s, height;
+    /*animation: move 6s ease infinite;*/
+}
+
+nav svg:nth-child(2) {
+    position: absolute;
+    height: 45px;
+    top: 0px;
+    left: 50%;
+    z-index: 0;
+    transform: translate(-80%, 0%);
+    transition: transform 0.5s, height;
+}
+
+nav .nav-element:hover svg {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    z-index: 0;
+    transform: translate(60%, 0%);
+}
+
+nav .nav-element:hover svg:nth-child(2)  {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    z-index: 0;
+    transform: translate(-150%, 0%);
+}
+
 
 /*** MAIN ***/
 main {
@@ -104,6 +169,7 @@ section {
 .content {
     display: flex;
     align-items: start;
+    justify-content: space-around;
     width: 100%;
     flex-direction: row;
     padding: 0rem 0rem 40rem;
@@ -114,10 +180,9 @@ section {
 	max-width: 1000px;
     width: 100%;
 	/*max-height: 100%;*/
-    height: 80vh;
+    /*height: 80vh;*/
 	padding-top: 50px;
-	border-radius: 1rem;
-    padding: 0rem 0rem 30rem;
+    /*padding: 0rem 0rem 30rem;*/
     overflow: auto;
 }
 
@@ -159,6 +224,153 @@ iframe {
 	}
 }
 
+@keyframes move{
+    50% { transform: translateY(-6px) translateX(-3px); }
+}
+
+/*** Cloud ***/
+
+.cloud-container {
+    font-size: 20px;
+    position: relative;
+    padding: 2rem;
+    max-width: 35rem;
+}
+
+.cloud-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cloud-content p {
+    z-index: 1;
+    animation: move 6s ease infinite;
+}
+
+.cloud p {
+    margin-left : 0rem;
+    text-align: center;
+}
+
+.cloud {
+    font-size: 3.7px;
+    left: 20px;
+    top: 25px;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    border-radius: 50rem;
+    position: absolute;
+    @include border-radius(50%);
+    background: #FFFFFF;
+    height: 60em; width: 60em;
+    box-shadow:
+    #FFFFFF 65em -15em 0 -5em, 
+    #FFFFFF 25em -25em, 
+    #FFFFFF 30em 10em, 
+    #FFFFFF 60em 15em 0 -10em, 
+    #FFFFFF 85em 5em 0 -5em;
+    
+    animation: move 6s ease infinite;
+}
+
+
+/************* Specific sections *************/
+
+/* bienvenue */
+.bienvenue {
+    height: 70vh;
+}
+
+.bienvenue > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    opacity: 0;
+    animation: appear 1s 2s forwards;
+}
+
+.bienvenue svg {
+    height: 3rem;
+}
+
+.bienvenue p {
+    margin-left: 0rem;
+    text-align: center;
+}
+
+.bienvenue .cloud-container {
+    opacity: 0;
+    animation: appear 1s 1s forwards;
+}
+
+.cloud-content .radio-controller {
+    animation: move 6s ease infinite;
+}
+
+/* a-propos */
+
+.a-propos .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60vh;
+}
+
+.stack-technique * {
+    border: 1px solid red;
+}
+
+.stack-technique .content {
+
+}
+
+
+/* contact */
+
+.contact .cloud-container {
+    margin-top: 5%;
+}
+
+.contact .cloud {
+    font-size: 5px;
+    top: 20%;
+    left: -4rem;
+}
+
+
+
+
+
+#cloud-intro{
+    z-index: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    height: 100%;
+    /*background: url(https://static.radulescu.me/examples/clouds/clouds1000.png);*/
+    background: /*url(https://static.radulescu.me/examples/clouds/clouds1000.png) 0 200px,
+                url(https://static.radulescu.me/examples/clouds/clouds1200_1.png) 0 00px,*/
+                url(https://static.radulescu.me/examples/clouds/clouds1000_blur3.png) 100px 250px;
+      animation: wind 60s linear infinite;
+  }
+  @keyframes wind{
+    100% {
+      background-position: 0 200px, 0 300px, 100px 250px;
+      
+    }
+    0% {
+      background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+      
+    }
+  
+  }
 
 /*** THREE JS ***/
 
@@ -182,11 +394,7 @@ iframe {
 /**** CONTROLLER ****/
 
 .radio-controller {
-	left: 50%;
-	transform: translate(-50%, 0%);
-	z-index: 3;
-	position: fixed;
-	bottom: 2em;
+    z-index: 3;
 	width: 9rem;
 	height: 6rem;
 	display: grid;
@@ -194,8 +402,16 @@ iframe {
 	grid-template-rows: repeat(2, 1fr);
 	grid-column-gap: 2px;
 	grid-row-gap: 2px;
-
+    
+	/*position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0%);
     display: none;
+	bottom: 2em;*/
+}
+
+.radio-controller svg {
+    height: 1rem;
 }
 
 #rc-up {
@@ -216,15 +432,16 @@ iframe {
 
 
 @media (max-width: 1000px) {
+    body {
+        font-size: 15px;
+    }
+
     .radio-controller {
         bottom: 1em;
     }
 
     .content {
         flex-direction: column;
-        align-items: center;
-        padding: 0rem 1rem 1rem;
-        overflow: scroll;
     }
 
     .card {
@@ -244,8 +461,12 @@ iframe {
         order: 0;
     }
 
-    .radio-controller {
-        display: block;
+    nav {
+        display: none;
+    }
+
+    section {
+        margin: 0rem 0rem;
     }
 }
 

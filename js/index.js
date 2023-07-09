@@ -24,7 +24,7 @@ scene = new THREE.Scene();
 
 ///////////Light/////////////
 const pointLight = new THREE.PointLight(0xffffff, 0.9);
-pointLight.position.set(0, 60, -10);
+pointLight.position.set(0, 100, -10);
 pointLight.shadow.mapSize.width = 500;
 pointLight.shadow.mapSize.height = 500;
 scene.add(pointLight);
