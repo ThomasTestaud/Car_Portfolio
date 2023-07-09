@@ -141,20 +141,19 @@
 			<div class="card">
 				<h2>À mon propos,</h2>
 				<p>Je suis Thomas Testaud, un développeur web passionné.</p>
-				<p>Après avoir travailler dans l'industrie de la musique en tant que freelance, et dans la restauration,
+				<p>Après avoir travaillé dans l'industrie de la musique en tant que freelance, et dans la restauration en tant que salarié,
 					je me suis tourné vers le monde du développement informatique.</p>
 				<p>Curieux et créatif, j'aime avant tout trouver des solutions techniques à des problèmes qui me sont
 					posé. J'aime voir des idées de projets se concrétiser.</p>
-				<p>J'aimerais travailler au sein d'une équipe soudée et motivé, passionné par son travail.</p>
+				<p>J'aime travailler au sein d'équipes soudée et motivé, passionné par leurs travail.</p>
 			</div>
 		</section>
 		<section class="none stack-technique" id="stack-technique" data-id="stack-technique"
 			data-btnid="stack-technique-btn" data-name="Stack technique" data-x="60" data-class="medium-bottom">
 			<h2>Stack technique</h2>
-			<h3>General</h3>
 			<p>Utilisation de Git, Jira, VS code, programation procédurale et orienté objet, architecture MVC, architecture découplée, Rest API, utilisation de Stripe.</p>
 			<div class="content">
-				<div>
+				<div class="stack-list">
 					<h3>Front-End</h3>
 					<ul>
 						<li>JavaScript</li>
@@ -165,22 +164,23 @@
 						<li>Programation de composants</li>
 					</ul>
 				</div>
-				<div>
+				<div class="stack-list">
 					<h3>Back-End</h3>
 					<ul>
 						<li>PHP</li>
+						<li>Création de rest API</li>
 						<li>MySQL</li>
+						<li>PHPMyAdmin</li>
 						<li>Framework Symfony 6</li>
 						<li>Composer</li>
-						<li>Création d'API Rest</li>
 						<li>Utilisation de JSON Web Tokens</li>
 					</ul>
 				</div>
 			</div>
 		</section>
-		<section class="none" id="projet-1" data-id="projet-1" data-btnid="btn-projet-1"
+		<section class="none projet" id="projet-1" data-id="projet-1" data-btnid="btn-projet-1"
 			data-name="Projet : Events_on_time" data-x="100" data-class="small-center">
-			<h2>Projets: Events_on_time</h2>
+			<h2>Events_on_time</h2>
 			<div class="content">
 				<iframe src="https://events-on-time.thomastestaud.com/" frameborder="0"></iframe>
 				<div class="card">
@@ -196,11 +196,6 @@
 						santée
 						chroniques, comme
 						des migraines ou des crises d'allergie.</p>
-					<p>Pour cela, décidez de quoi mesurer, puis créez un graphe dédié. Enssuite, à chaque fois que cet
-						évenement aura lieux, apuyez sur le boutton "Add Event". Vous pourez enssuite visualiser la courbe
-						produite.</p>
-					<p>Et si vous êtes développeurs, vous pouvez même automatiser celà en créant un bot qui fera une requête
-						à l'API à chaque fois qu'un certain type d'évènent se produira.</p>
 					<h4>Concrètement, on peut y :</h4>
 					<ul>
 						<li>Créer des compte</li>
@@ -208,19 +203,20 @@
 						<li>Ajouter des evenements aux graphiques</li>
 						<li>Gérer les différents paramètres d'affichages, notamment sommer les évènements par groupe de
 							temps</li>
-						<li>Accéder à l'écriture et la lecture de graphiques en passant directement par l'API</li>
+						<li>Accéder à toutes les fonctions de l'application depuis l'API</li>
 					</ul>
 					<h3>Comment c'est fait ?</h3>
-					<p>Events_on_time utilise une architecture découplée. C'est à dire que le back-end est totalement
-						indépendent dur front-end, et vise-versa. Ils ne sont d'ailleur même pas héberger sur le même
-						serveur. Ils communiquent entre eux grâce à des chaine de charachères au format JSON.</p>
-
+					<p>Events_on_time utilise une architecture découplée. Le front-end et le back-end ne sont pas hébergé à la même adresse, et ne communiquent entre eux seulement par le biais de chaine de charachères au format JSON.</p>
 					<h4>Le front-end :</h4>
+					<p>Vue.js</p>
 					<h4>Le back-end :</h4>
+					<p>Architecture MVC en PHP suivant le modèle d'une API REST.</p>
+					<h4>Base de donnée :</h4>
+					<p>MySQL</p>
 				</div>
 			</div>
 		</section>
-		<section class="none" id="projet-2" data-id="projet-2" data-btnid="btn-projet-2"
+		<section class="none projet" id="projet-2" data-id="projet-2" data-btnid="btn-projet-2"
 			data-name="Projet : Ce site avec Three.JS" data-x="140" data-class="focus-center">
 			<h2>Ce site avec Three.JS</h2>
 			<div class="card">
@@ -232,22 +228,18 @@
 					<li>La voiture est doté d'un algorythme d'inertie développé par mes soins pour une acceleration proche de la réalitée</li>
 					<li>La forme du chemin et les emplacements des arbres sont généré de manière aléatoire sur la carte</li>
 				</ul>
-				<h2>CarCity</h2>
-				<p>Concernant l'algorythme de la voiture, j'ai réutilisé une partie du code de l'un de mes tout premiers projets de dev; un de ceux qui m'on fait tomber amoureux de la programation, le bien nommée CarCity :</p>
-				<iframe src="https://thomastestaud.sites.3wa.io/CarCity_PIOU.1/car.phtml" frameborder="0" style="width:400px;height:400px;"></iframe>
-				<p>C'est un petit jeu en JavaScript et CSS (les petites voitures sont bien modélisée en HTML/CSS) où l'on peut y conduire des petits voiture à travers une ville. Attention à ne pas vous prendre les murs !</p>
 			</div>
 		</section>
-		<section class="none" id="projet-3" data-id="projet-3" data-btnid="btn-projet-3" data-name="Projet : Pioupiou"
+		<section class="none projet" id="projet-3" data-id="projet-3" data-btnid="btn-projet-3" data-name="Projet : Pioupiou"
 			data-x="180" data-class="small-center">
-			<h2>Projets: Pioupiou</h2>
+			<h2>Pioupiou</h2>
 			<div class="content">
 				<iframe
 					src="https://thomastestaud.sites.3wa.io/PROJET%20FINAL/2.5/index.php?route=dashboard&invite=%22dd%22"
 					frameborder="0"></iframe>
 				<div class="card">
 					<h3>Qu'es que c'est ?</h3>
-					<p>Pioupiou est la base un réseau social tout à fait comme les autres.</p>
+					<p>Pioupiou est la base d'un réseau social tout à fait comme les autres.</p>
 					<h3>Que peut-on y faire ?</h3>
 					<ul>
 						<li>Créer des comptes et s'y connecter</li>
@@ -264,8 +256,8 @@
 					<ul>
 						<li>Un système de sécurité permettant de hasher les mots de passes</li>
 						<li>Un système de token permettant de vérifier les droits d'un utilisateur à chaque action
-							effecturer (suppression d'un post, commentaire, etc)</li>
-						<li>De profils modérateur ayant le droit de suprimmer n'importe quel post</li>
+							effecturé (suppression d'un post, commentaire, etc)</li>
+						<li>De compts modérateur ayant le droit de suprimmer et modérer n'importe quel post</li>
 					</ul>
 				</div>
 			</div>
