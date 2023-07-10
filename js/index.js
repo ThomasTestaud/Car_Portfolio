@@ -175,6 +175,24 @@ sections.forEach((section) => {
 });
 
 
+
+
+
+
+let geometry = drawKit.mergeGeometries();
+let material = new THREE.MeshToonMaterial({vertexColors: THREE.VertexColors});
+let mesh = new THREE.Mesh(geometry, material);
+mesh.castShadow = true; // Enable casting shadows
+mesh.receiveShadow = true; // Enable receiving shadows
+scene.add(mesh);
+
+
+
+
+
+
+
+
 let classes = ["small-center", "top-right", "focus-center", "center", "right", "medium-bottom"];
 
 function removeAllClasses() {
@@ -210,7 +228,8 @@ document.addEventListener("mousemove", function(event) {
 
 
 
-
+let drawcall = document.querySelector('#drawcall span');
+let polygones = document.querySelector('#polygons span');
 
 function animate() {
     /*
@@ -257,6 +276,17 @@ function animate() {
     requestAnimationFrame(animate);
 
 
+
+
+
+    
+
+    let drawcalls = 0;
+    let triangles = 0;
+    drawcalls += renderer.info.render.calls;
+    triangles += renderer.info.render.triangles;
+    drawcall.innerText = drawcalls;
+    polygones.innerText = triangles;
 }
 
 animate();
