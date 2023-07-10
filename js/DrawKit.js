@@ -39,23 +39,22 @@ class DrawKit {
     }
 
     drawGrass() {
-        const geometry = new THREE.BoxGeometry(800, 0.5, 50);
+        let geometry = new THREE.BoxGeometry(800, 0.5, 50);
 
-        // Load the grass texture and normal map
-        const textureLoader = new THREE.TextureLoader();
-        //const grassNormalMap = textureLoader.load('normal.jpeg');
-
-
-        // Create the material with the grass texture and normal map
+        geometry.translate(400 / 2 - 0, -0.25, 0);
+        geometry = this.createHexColorAttribute(geometry, this.grassColor);
+        this.commonGeometry.push(geometry);
+        
+        /*
         const material = new THREE.MeshToonMaterial({
             color: this.grassColor,
             receiveShadow: true
         });
-
         const mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(400 / 2 - 0, -0.25, 0);
         mesh.receiveShadow = true;
         this.scene.add(mesh);
+        */
     }
 
     drawRoad(roadLength, roadAtZindex) {
@@ -82,14 +81,14 @@ class DrawKit {
         geometry.translate(x, 1.5, z);
         geometry = this.createHexColorAttribute(geometry, 0x917a28);
         this.commonGeometry.push(geometry);
-/*
+        /*
         let material = new THREE.MeshToonMaterial({ color: 0x917a28, receiveShadow: true }); // Enable receiving shadows
         let mesh = new THREE.Mesh(geometry, material);
         mesh.position.set(x, 1.5, z);
         mesh.castShadow = true; // Enable casting shadows
         mesh.receiveShadow = true; // Enable receiving shadows
         this.scene.add(mesh);
-*/
+        */
 
         geometry = new THREE.CylinderGeometry(0, 2, 5, 5);
         geometry.translate(x, 5, z);

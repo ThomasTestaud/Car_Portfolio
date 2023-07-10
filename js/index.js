@@ -23,13 +23,15 @@ scene = new THREE.Scene();
 //scene.background = new THREE.Color(0xffffff);
 
 ///////////Light/////////////
-const pointLight = new THREE.PointLight(0xffffff, 0.9);
+let pointLight = new THREE.PointLight(0xffffff, 0.95);
 pointLight.position.set(0, 100, -10);
 pointLight.shadow.mapSize.width = 500;
 pointLight.shadow.mapSize.height = 500;
 scene.add(pointLight);
+
+/*
 const lightHelper = new THREE.PointLightHelper(pointLight)
-scene.add(lightHelper);
+scene.add(lightHelper);*/
 
 // Renderer
 renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -228,8 +230,8 @@ document.addEventListener("mousemove", function(event) {
 
 
 
-let drawcall = document.querySelector('#drawcall span');
-let polygones = document.querySelector('#polygons span');
+//let drawcall = document.querySelector('#drawcall span');
+//let polygones = document.querySelector('#polygons span');
 
 function animate() {
     /*
@@ -279,14 +281,13 @@ function animate() {
 
 
 
-    
-
+    /*
     let drawcalls = 0;
     let triangles = 0;
     drawcalls += renderer.info.render.calls;
     triangles += renderer.info.render.triangles;
     drawcall.innerText = drawcalls;
-    polygones.innerText = triangles;
+    polygones.innerText = triangles;*/
 }
 
 animate();
