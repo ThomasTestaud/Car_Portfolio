@@ -233,6 +233,7 @@ iframe {
     position: relative;
     padding: 2rem;
     max-width: 35rem;
+    height: 370px;
 }
 
 .cloud-content {
@@ -240,6 +241,7 @@ iframe {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-top: 70px;
 }
 
 .cloud-content p {
@@ -255,7 +257,7 @@ iframe {
 .cloud {
     font-size: 3.7px;
     left: 20px;
-    top: 25px;
+    top: 100px;
     color: rgb(0, 0, 0);
     background: rgb(255, 255, 255);
     border-radius: 50rem;
@@ -317,10 +319,6 @@ iframe {
     justify-content: center;
     height: 60vh;
 }
-/*
-.stack-technique * {
-    border: 1px solid rgba(255, 0, 0, 0.156);
-}*/
 
 .stack-technique {
     display: flex;
@@ -361,7 +359,6 @@ iframe {
     overflow: auto;
 }
 
-
 /* contact */
 
 .contact .cloud-container {
@@ -373,10 +370,6 @@ iframe {
     top: 20%;
     left: -4rem;
 }
-
-
-
-
 
 #cloud-intro{
     z-index: 0;
@@ -415,7 +408,6 @@ iframe {
 	z-index: 1;
 	transition: transform 1s, right 1s, top 1s, border-radius 1s, width 1s;
 
-
     max-height: 100vw;
     max-width: 100%;
     width: 100%;
@@ -435,12 +427,6 @@ iframe {
 	grid-template-rows: repeat(2, 1fr);
 	grid-column-gap: 2px;
 	grid-row-gap: 2px;
-    
-	/*position: fixed;
-	left: 50%;
-	transform: translate(-50%, 0%);
-    display: none;
-	bottom: 2em;*/
 }
 
 .radio-controller svg {
@@ -463,6 +449,24 @@ iframe {
 	grid-area: 2 / 3 / 3 / 4;
 }
 
+@media (max-height: 830px) {
+    .bienvenue h2 {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .bienvenue > div:nth-child(1) {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row-reverse;
+    }
+
+    .contact .cloud {
+        font-size: 4px;
+        top: 10%;
+        left: 0rem;
+    }
+}
 
 @media (max-width: 1000px) {
     body {
