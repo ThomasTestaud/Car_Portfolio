@@ -8,6 +8,86 @@ class DrawKit {
         this.scene = scene;
         this.roadAtX = -70;
         this.commonGeometry = [];
+        this.car = [];
+    }
+
+    drawCar() {
+        let carWidth = 1.7;
+        // Body
+        let geometry = new THREE.BoxGeometry(carWidth, 1, 3);
+        geometry.translate(0, 1-0.2, 0);
+        geometry = this.createHexColorAttribute(geometry, 0xff0000);
+        this.car.push(geometry);
+        // Cabin
+        geometry = new THREE.CylinderGeometry(1, 1, carWidth, 3, 1, false, 0, Math.PI); 
+        geometry.rotateZ(Math.PI/2);
+        geometry.translate(0, 1.4-0.2, 0.35);
+        geometry = this.createHexColorAttribute(geometry, 0xff0000);
+        this.car.push(geometry);
+        // Wheels
+        geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 8, 1, false, 0, Math.PI*2); 
+        geometry.rotateZ(Math.PI/2);
+        geometry.translate(carWidth/2, 0.4, 0.9);
+        geometry = this.createHexColorAttribute(geometry, 0x000000);
+        this.car.push(geometry);
+        geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 8, 1, false, 0, Math.PI*2); 
+        geometry.rotateZ(Math.PI/2);
+        geometry.translate(-carWidth/2, 0.4, 0.9);
+        geometry = this.createHexColorAttribute(geometry, 0x000000);
+        this.car.push(geometry);
+        geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 8, 1, false, 0, Math.PI*2); 
+        geometry.rotateZ(Math.PI/2);
+        geometry.translate(carWidth/2, 0.4, -0.8);
+        geometry = this.createHexColorAttribute(geometry, 0x000000);
+        this.car.push(geometry);
+        geometry = new THREE.CylinderGeometry(0.4, 0.4, 0.3, 8, 1, false, 0, Math.PI*2); 
+        geometry.rotateZ(Math.PI/2);
+        geometry.translate(-carWidth/2, 0.4, -0.8);
+        geometry = this.createHexColorAttribute(geometry, 0x000000);
+        this.car.push(geometry);
+
+
+        geometry = this.mergeGeometries(this.car);
+        let material = new THREE.MeshToonMaterial({vertexColors: THREE.VertexColors});
+        let mesh = new THREE.Mesh(geometry, material);
+        mesh.castShadow = true; // Enable casting shadows
+        mesh.receiveShadow = true; // Enable receiving shadows
+        this.scene.add(mesh);
+
+        return mesh;
+    }
+
+    drawGrass() {
+        let geometry = new THREE.BoxGeometry(800, 0.5, 50);
+
+        geometry.translate(400 / 2 - 0, -0.25, 0);
+        geometry = this.createHexColorAttribute(geometry, this.grassColor);
+        this.commonGeometry.push(geometry);
+        
+    }
+
+    drawRoad(roadLength, roadAtZindex) {
+        let geometry = new THREE.BoxGeometry(roadLength, 0.02, 5);
+
+
+        geometry.translate(this.roadAtX + roadLength / 2, 0.01, roadAtZindex);
+        geometry = this.createHexColorAttribute(geometry, 0x917a28);
+        this.commonGeometry.push(geometry);
+
+        this.roadAtX += roadLength;
+    }
+
+
+    drawPineTree(x, z) {
+        let geometry = new THREE.CylinderGeometry(0.5, 0.5, 3, 5);
+        geometry.translate(x, 1.5, z);
+        geometry = this.createHexColorAttribute(geometry, 0x917a28);
+        this.commonGeometry.push(geometry);
+
+        geometry = new THREE.CylinderGeometry(0, 2, 5, 5);
+        geometry.translate(x, 5, z);
+        geometry = this.createHexColorAttribute(geometry, 0x008909);
+        this.commonGeometry.push(geometry);
     }
 
     writeIn(text, x, y, z) {
@@ -21,13 +101,6 @@ class DrawKit {
                 curveSegments: 12,
                 bevelEnabled: false
             });
-            
-            /*
-            textGeometry.translate(x, y, z);
-            textGeometry.rotateX(-1.58);
-            textGeometry = this.createHexColorAttribute(textGeometry, this.textColor);
-            this.commonGeometry.push(textGeometry);
-            */
 
             const material = new THREE.MeshToonMaterial({ color: this.textColor });
             const textMesh = new THREE.Mesh(textGeometry, material);
@@ -38,76 +111,10 @@ class DrawKit {
         });
     }
 
-    drawGrass() {
-        let geometry = new THREE.BoxGeometry(800, 0.5, 50);
 
-        geometry.translate(400 / 2 - 0, -0.25, 0);
-        geometry = this.createHexColorAttribute(geometry, this.grassColor);
-        this.commonGeometry.push(geometry);
-        
-        /*
-        const material = new THREE.MeshToonMaterial({
-            color: this.grassColor,
-            receiveShadow: true
-        });
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(400 / 2 - 0, -0.25, 0);
-        mesh.receiveShadow = true;
-        this.scene.add(mesh);
-        */
-    }
-
-    drawRoad(roadLength, roadAtZindex) {
-        let geometry = new THREE.BoxGeometry(roadLength, 0.02, 5);
-        //let material = new THREE.MeshToonMaterial({ color: 0x917a28, receiveShadow: true }); // Enable receiving shadows
-        //let mesh = new THREE.Mesh(geometry, material);
-        //mesh.position.set(this.roadAtX + roadLength / 2, 0, roadAtZindex);
-
-
-        geometry.translate(this.roadAtX + roadLength / 2, 0.01, roadAtZindex);
-        geometry = this.createHexColorAttribute(geometry, 0x917a28);
-        this.commonGeometry.push(geometry);
-
-
-        //mesh.receiveShadow = true; // Enable receiving shadows
-        //this.scene.add(mesh);
-
-        this.roadAtX += roadLength;
-    }
-
-
-    drawPineTree(x, z) {
-        let geometry = new THREE.CylinderGeometry(0.5, 0.5, 3, 5);
-        geometry.translate(x, 1.5, z);
-        geometry = this.createHexColorAttribute(geometry, 0x917a28);
-        this.commonGeometry.push(geometry);
-        /*
-        let material = new THREE.MeshToonMaterial({ color: 0x917a28, receiveShadow: true }); // Enable receiving shadows
-        let mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(x, 1.5, z);
-        mesh.castShadow = true; // Enable casting shadows
-        mesh.receiveShadow = true; // Enable receiving shadows
-        this.scene.add(mesh);
-        */
-
-        geometry = new THREE.CylinderGeometry(0, 2, 5, 5);
-        geometry.translate(x, 5, z);
-        geometry = this.createHexColorAttribute(geometry, 0x008909);
-        this.commonGeometry.push(geometry);
-        /*
-        material = new THREE.MeshToonMaterial({ color: 0x008909, receiveShadow: true }); // Enable receiving shadows
-        mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(x, 5, z);
-        mesh.castShadow = true; // Enable casting shadows
-        mesh.receiveShadow = true; // Enable receiving shadows
-        this.scene.add(mesh);
-        */
-    }
-
-
-    mergeGeometries()
+    mergeGeometries(geometry)
     {
-        let mergedGeometries = this.mergeBufferGeometries(this.commonGeometry);
+        let mergedGeometries = this.mergeBufferGeometries(geometry);
         mergedGeometries.computeVertexNormals();
         return mergedGeometries;
     }

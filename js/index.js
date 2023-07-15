@@ -71,13 +71,10 @@ map(pandaCar);
 const drawKit = new DrawKit(scene);
 
 // Draw car
-const carShape = new THREE.BoxGeometry(2, 2, 3);
-const carMaterial = new THREE.MeshToonMaterial({ color: 0xff0000, });
-const car = new THREE.Mesh(carShape, carMaterial);
-car.position.set(0, 1, 0);
-car.castShadow = true; // Enable casting shadows
-car.receiveShadow = true; // Enable receiving shadows
-scene.add(car);
+
+let car = drawKit.drawCar();
+car.position.set(0, 0, 0);
+car.scale.set(1.7,1.7,1.7);
 
 
 // Grass
@@ -181,12 +178,13 @@ sections.forEach((section) => {
 
 
 
-let geometry = drawKit.mergeGeometries();
+let geometry = drawKit.mergeGeometries(drawKit.commonGeometry);
 let material = new THREE.MeshToonMaterial({vertexColors: THREE.VertexColors});
 let mesh = new THREE.Mesh(geometry, material);
 mesh.castShadow = true; // Enable casting shadows
 mesh.receiveShadow = true; // Enable receiving shadows
 scene.add(mesh);
+
 
 
 
